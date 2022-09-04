@@ -1,0 +1,8 @@
+[alias]
+	st = status -s
+	lg = log --oneline --graph
+[user]
+	name = Diwas10
+	email = rimaldiwas10@gmail.com
+[init]
+	defaultBranch = main
