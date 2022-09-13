@@ -33,6 +33,7 @@ from fonts import jet_bold, jet_regular
 import mywidgets 
 import colors
 
+
 mod = "mod4"
 terminal = "alacritty"
 
@@ -146,8 +147,9 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-
 dot = widget.TextBox('', foreground='874356')
+left_end  = widget.TextBox(text='', foreground=colors.nordy_lblue, padding=0, fontsize=19,)
+right_end = widget.TextBox(text='', foreground=colors.nordy_lblue, padding=0, fontsize=19,)
 
 screens = [
     Screen(
@@ -161,7 +163,7 @@ screens = [
                     active='D49B54',                      # All active workspaces
                     inactive='F7E2E2',
                     font=jet_regular,
-                    ),
+                ),
                 widget.Prompt(),
                 widget.Spacer(),
                 # widget.WindowName(),
@@ -171,22 +173,25 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                # widget.TextBox("default config", name="default"),
-                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
-                dot,
+                left_end,
                 widget.Backlight(
                     backlight_name='intel_backlight',  # Backlight driver name
                     brightness_file='brightness',     # File with current brightness (/sys/class/intel_backlight/brightness) for me
                     foreground='F3E0B5',
+                    background=colors.nordy_lblue,
                     fmt=' {}',
                 ),
-                dot,
+
+                right_end, dot, left_end,
+
                 widget.Volume(
-                    foreground='#61A4BC',
+                    foreground='61A4BC',
+                    background=colors.nordy_lblue,
                     fmt=' {}',
-                    ),
-                dot,
+                ),
+
+                right_end, dot, left_end,
 
                 widget.Battery(
                     battery         = 'BAT0',
@@ -195,21 +200,30 @@ screens = [
                     charge_char     = ' ' + mywidgets.battery()['icon'],
                     discharge_char  = mywidgets.battery()['icon'],
                     foreground      = mywidgets.battery()['foreground'],
+                    background      = colors.nordy_lblue,
                 ),
 
-                dot,
-                widget.Clock(format="  %I:%M %p", foreground='#E38B29'),
-                widget.Clock(format="%b %d,%a", foreground='#F1A661'),
-                dot,
+                right_end, dot, left_end,
+
+                widget.Clock(format=" %I:%M %p", foreground='#E38B29', background=colors.nordy_lblue),
+                widget.Clock(format="%b %d,%a",   foreground='#F1A661', background=colors.nordy_lblue),
+
+                right_end, dot, left_end,
+
                 widget.QuickExit(
-                    default_text="   ",
+                    default_text="",
                     foreground="#EB1D36",
+                    background=colors.nordy_lblue,
                     countdown_format=' {}  ',
-                ),
+                    ),
+                right_end,
             ],
             24,
-            # background='#472D2D'
-            background = colors.nordy_black,
+            # background=colors.nordy_lblue
+            # background = '#383838'
+            background=colors.nordy_dblue,
+            border_width=[2, 0, 2, 0],
+            border_color=[colors.nordy_dblue, "000000", colors.nordy_dblue, "000000"],
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
             # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
