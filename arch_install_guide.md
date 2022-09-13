@@ -21,8 +21,10 @@
 ### Install a Window manager ([Qtile](https://wiki.archlinux.org/title/Qtile) )
 - `sudo pacman -S qtile`
 - To run Qtile as an X11 window manager, run `qtile start` with xinit.
+Also install `python-dbus-next`
 
-
+Install my config dependecies:
+- `sudo pacman -S upower`
 
 ### Install an AUR helper (yay)
 - `git clone https://aur.archlinux.org/yay-git.git`
@@ -35,9 +37,9 @@
 
 ## Settings for brightness control
 ### xbacklight 
-`xbacklight` didn't work properly, installing another package called `acpilight` make `xbacklight` command work. Also `/sys/class/backlight/intel_backlight` was causing issues. It had only root access
-- `sudo pacman -S acpilight`
-- `chown lufy:lufy /sys/class/backlight/intel_backlight/*`
+`xbacklight` comes with `xorg-xbacklight`. If `xbacklight` doesn't work, downloading `acpilight` would be the solution.
+Then you can use `xbacklight` after `sudo chown /sys/class/backlight/intel_backlight/*`
+
 
 ### xrandr
 This configuration works somehow.
@@ -50,3 +52,24 @@ This configuration works somehow.
 This command line tool auto configures the device 
 - `sudo pacman -S brightnessctl`
 - See `brightnessctl -h` and `man brightnessctl`
+
+### Troubleshooting
+If you get the "No outputs have backlight property" error, it is because
+`xrandr/xbacklight` does not choose the right directory in
+`/sys/class/backlight`. You can specify the directory by setting the Backlight
+option of the device section in `/etc/X11/xorg.conf.d/20-video.conf`. For
+instance, if the name of the directory is `intel_backlight` and using the **Intel**
+driver, the device section may be configured as follows:
+
+```
+/etc/X11/xorg.conf.d/20-intel.conf
+Section "Device"
+    Identifier  "Intel Graphics"
+    Driver      "intel"
+    Option      "Backlight"  "intel_backlight"
+EndSection
+```
+## Audio 
+### Install ALSA utils
+This will get us `amixer` and `alsamixer`
+- `sudo pacman -S alsa-utils`
