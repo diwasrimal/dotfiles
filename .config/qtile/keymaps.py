@@ -1,5 +1,6 @@
 from libqtile.config import Key, Drag, Click
 from libqtile.lazy import lazy
+import os
 
 mod = "mod4"
 terminal = "alacritty"
@@ -65,6 +66,7 @@ bindings = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "b",      lazy.spawn("brave"), desc="Launch browser"),
     Key([mod], "f",      lazy.spawn("thunar"), desc="Launch browser"),
+    Key([mod], "s",      lazy.spawn("~/.scripts/screenshot"), desc="Launch browser"),
 ]
 
 # All mouse actions

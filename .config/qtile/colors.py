@@ -8,7 +8,8 @@ blue = '#0000ff'
 green = '#00ff00'
 maybe_green = '#D2D79F'
 yellow = '#ffff00'
-purple = '#ff00ff'
+dpurple = '#AF0171'
+lpurple = '#E80F88'
 pink = '#E94560'
 
 # Gradients

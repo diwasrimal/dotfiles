@@ -73,3 +73,19 @@ EndSection
 ### Install ALSA utils
 This will get us `amixer` and `alsamixer`
 - `sudo pacman -S alsa-utils`
+
+## Customizations
+#### Copy from archcraft openbox
+- `git clone https://github.com/archcraft-os/archcraft-openbox.git ~/archcarft`
+- `mv ~/archcraft/files ~/; rm -rf ~/archcraft/*; mv ~/files ~/archcraft/`
+
+#### Make directories inside $HOME
+- `sudo pacman -S xdg-user-dirs`
+- `xdg-user-dirs-update`
+
+#### Install necessities
+- `sudo pacman -S dunst rofi maim`
+
+## Screenshots
+#### Copy rofi config
+- `cp -r ~/archcraft/rofi ~/.config/`

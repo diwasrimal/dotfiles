@@ -160,7 +160,23 @@ screens = [
                 ),
 
                 dot,
-                widget.Clock(format="  %I:%M %p", foreground='#E38B29'),
+
+                widget.Net(
+                    foreground=colors.lpurple,
+                    update_interval=1,
+                    fontsize=14,
+                    fmt='直 ' 
+                    if mywidgets.check_output(
+                        "cat /sys/class/net/wlan0/carrier",
+                        shell=True,
+                        text=True,
+                        ).strip() 
+                    == "1" else "睊 ",
+                    ),
+
+                dot, 
+
+                widget.Clock(format=" %I:%M %p", foreground='#E38B29'),
                 widget.Clock(format="%b %d,%a", foreground='#F1A661'),
                 dot,
                 widget.QuickExit(
@@ -192,7 +208,7 @@ floating_layout = layout.Floating(
         Match(wm_class="maketag"),  # gitk
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
+       Match(title="pinentry"),  # GPG key password entry
     ]
 )
 auto_fullscreen = True
