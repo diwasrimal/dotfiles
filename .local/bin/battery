@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Get battery status and capacity
+for battery in /sys/class/power_supply/BAT?*; do 
+
+  status="$(cat "$battery/status")"
+  capacity="$(cat "$battery/capacity")"
+
+  [[ "$status" == "Charging" ]] && charging_icon="" || charging_icon=""
+  if   [[ $capacity -gt 80 ]]; then capacity_icon=' '
+  elif [[ $capacity -gt 60 ]]; then capacity_icon=' '
+  elif [[ $capacity -gt 40 ]]; then capacity_icon=' '
+  elif [[ $capacity -gt 15 ]]; then capacity_icon=' '
+  else capacity_icon=' '
+  fi
+
+  printf "%s %s %d%%" "$charging_icon" "$capacity_icon" "$capacity"
+
+done
+
+echo
+

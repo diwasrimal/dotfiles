@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
+  wifiicon=" "
+elif grep -xq 'down' /sys/class/net/w*/operstate 2>/dev/null ; then
+  wifiicon="睊"
+fi
+
+echo "$wifiicon"
