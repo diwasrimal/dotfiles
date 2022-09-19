@@ -3,7 +3,7 @@
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR="nvim"
 export TERMINAL="alacritty"
-export BROWSER="firefox"
+export BROWSER="brave"
 
 echo ".profile read"
 
