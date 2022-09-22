@@ -1,4 +1,9 @@
 #!/bin/bash
 
-maim ~/Pictures/Screenshots/$(date +%s).png | xclip -selection cl
+case "$1" in
+  "-s") maim -s | tee ~/pics/Screenshots/$(date "+%s").png | xclip -selection clipboard -t image/png
+  ;;
+  *) maim | tee ~/pics/Screenshots/$(date "+%s").png | xclip -selection clipboard -t image/png
+  ;;
+esac
 

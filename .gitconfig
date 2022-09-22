@@ -1,6 +1,7 @@
 [alias]
 	st = status -s
 	lg = log --oneline --graph
+  lsf = ls-files
 [user]
 	name = Diwas10
 	email = rimaldiwas10@gmail.com
