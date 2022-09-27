@@ -16,6 +16,7 @@ PS1='\[\033[1;34m\][\[\033[1;37m\]\u\[\033[1;31m\]@\[\033[1;37m\]\h\[\033[1;34m\
 alias s='startx'
 alias vi='nvim'
 alias smi='sudo make install'
+alias dots="/usr/bin/git --git-dir=$HOME/code/dotfiles.git --work-tree=$HOME"
 
 # Pacman 
 alias pac='sudo pacman'

@@ -5,9 +5,9 @@ nitrogen --restore &
 [ ! -s ~/.config/mpd/pid ] && mpd
 
 # Dwm 
-redshift -O3500 &
-nvim --headless &
-picom &
+# redshift -O3500 &
+# nvim --headless &
+# picom &
 exec dwmblocks &
 exec dwm
 
