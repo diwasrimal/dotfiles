@@ -3,10 +3,11 @@
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR="nvim"
 export TERMINAL="alacritty"
-export BROWSER="brave"
+export BROWSER="firefox"
 
-echo ".profile read"
-
+# Auto startx
 if [[ "$(tty)" == "/dev/tty1" ]]; then
   pgrep dwm || startx
 fi
+
+
