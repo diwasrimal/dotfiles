@@ -7,7 +7,7 @@ nitrogen --restore &
 # Dwm 
 # redshift -O3500 &
 # nvim --headless &
-# picom &
+picom &
 exec dwmblocks &
 exec dwm
 
