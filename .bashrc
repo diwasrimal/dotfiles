@@ -46,8 +46,8 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # copy pase
-alias "c=xclip -selection clipboard"
-alias "v=xclip -o -selection clipboard"
+alias c='xclip -selection clipboard'
+alias v='xclip -o -selection clipboard'
 
 # Use colors for less, man, etc.
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
