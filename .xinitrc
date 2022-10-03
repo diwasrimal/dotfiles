@@ -1,5 +1,7 @@
 xset r rate 200 25 &
 nitrogen --restore &
+nvim --headless &
+# redshift -O3500 &
 
 # Map right Alt key as super
 xmodmap ~/.Xmodmap
@@ -8,8 +10,6 @@ xmodmap ~/.Xmodmap
 [ ! -s ~/.config/mpd/pid ] && mpd
 
 # Dwm 
-# redshift -O3500 &
-# nvim --headless &
 picom &
 exec dwmblocks &
 exec dwm
