@@ -7,3 +7,4 @@ case "$1" in
   ;;
 esac
 
+notify-send -i ~/.config/icons/picture.png "Image copied to clipboard"

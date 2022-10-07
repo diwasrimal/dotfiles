@@ -6,13 +6,22 @@
 [[ $- != *i* ]] && return
 
 # Use bash-completion, if available
-[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
-    . /usr/share/bash-completion/bash_completion
+if [ -f /etc/bash_completion ]; then
+  . /etc/bash_completion
+elif [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
+  . /opt/local/etc/profile.d/bash_completion.sh
+fi
 
 # Prompt
 # PS1='\[\033[1;34m\][\[\033[1;37m\]\u\[\033[1;31m\]@\[\033[1;37m\]\h\[\033[1;34m\]] \[\033[1;35m\]\w\n\[\033[1;32m\]➜\[\033[1;37m\] '
 # PS1='\[\033[1;34m\][\[\033[1;37m\]\u\[\033[1;31m\]@\[\033[1;37m\]\h\[\033[1;34m\]] \[\033[1;35m\]\W \[\033[1;32m\]➜\[\033[1;37m\] '
 . ~/.bash_prompt
+
+# Options for cd
+shopt -s cdspell
+complete -d cd
+alias ..="cd .."
+alias ...="cd ../.."
 
 alias s='startx'
 alias vi='nvim'
@@ -45,6 +54,8 @@ alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
+alias diff='diff --color=auto'
+
 # copy pase
 alias c='xclip -selection clipboard'
 alias v='xclip -o -selection clipboard'
@@ -59,5 +70,5 @@ export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
-# Language specific
+# Programming shorcuts
 alias vba=". venv/bin/activate"

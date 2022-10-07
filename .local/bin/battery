@@ -15,7 +15,11 @@ for battery in /sys/class/power_supply/BAT?*; do
   else capacity_icon=' '
   fi
 
-  printf "%s %s %d%%" "$charging_icon" "$capacity_icon" "$capacity"
+  if [[ -z $charging_icon ]]; then
+    printf "%s %d%%" "$capacity_icon" "$capacity"
+  else
+    printf "%s %s %d%%" "$charging_icon" "$capacity_icon" "$capacity"
+  fi
 
 done
 
