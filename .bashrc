@@ -22,6 +22,7 @@ shopt -s cdspell
 complete -d cd
 alias ..="cd .."
 alias ...="cd ../.."
+alias g='. goto-bookmarked-dirs'   # cd into a directory from bookmarked directories
 
 alias s='startx'
 alias vi='nvim'
@@ -72,3 +73,4 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
 # Programming shorcuts
 alias vba=". venv/bin/activate"
+

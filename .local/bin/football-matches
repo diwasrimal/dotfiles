@@ -1,0 +1,21 @@
+#!/bin/bash
+
+data="$(curl -s https://onefootball.com/en/matches)"
+
+games=""
+
+[[ -n $(echo "$data" | grep premier)   ]] && games="$games PL"
+[[ -n $(echo "$data" | grep champions) ]] && games="$games UCL"
+[[ -n $(echo "$data" | grep europa)    ]] && games="$games Europa"
+[[ -n $(echo "$data" | grep laliga)    ]] && games="$games Laliga"
+[[ -n $(echo "$data" | grep serie)     ]] && games="$games Serie-A"
+
+if [[ -n $games ]]; then
+  printf "⚽"
+  for game in $games; do 
+    [[ -n $game ]] && printf " %s" $game
+  done
+  echo 
+else
+  printf "*_*"
+fi

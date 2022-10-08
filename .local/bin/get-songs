@@ -1,0 +1,11 @@
+#!/bin/bash
+
+project="$HOME/code/Songs"
+
+echo "Activating env from $project.."
+cd $project
+. venv/bin/activate
+python download.py -q "$@"
+cd - 1>/dev/null
+deactivate
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+color="$(gpick -so)"
+echo -n $color | xclip -selection clipboard
+notify-send -i ~/.config/icons/eyedropper.png "$color copied to clipboard."
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+file=$(find ~/ -type f | dmenu -i -l 30)
+curl -F "file=@$file" 0x0.st | xclip -selection clipboard
+notify-send -i ~/.config/icons/link.png "Link copied to clipboard."

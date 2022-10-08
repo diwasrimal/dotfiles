@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dir=$(cat $HOME/.local/share/bookmarked-dirs.txt | dmenu -i -l 30)
+cd $dir
+
