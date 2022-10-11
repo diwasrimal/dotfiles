@@ -1,5 +1,4 @@
 #!/bin/bash
 
-dir=$(cat $HOME/.local/share/bookmarked-dirs.txt | dmenu -i -l 30)
-cd $dir
-
+# cd $(cat $HOME/.local/share/bookmarked-dirs.txt | dmenu -i -l 20) && ls -l
+cd $(cat $HOME/.local/share/bookmarked-dirs.txt | fzf ) && ls -l

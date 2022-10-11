@@ -1,10 +1,11 @@
 #!/bin/bash
 
-case "$1" in
-  "-s") maim -s | tee ~/pics/Screenshots/$(date "+%s").png | xclip -selection clipboard -t image/png
-  ;;
-  *) maim | tee ~/pics/Screenshots/$(date "+%s").png | xclip -selection clipboard -t image/png
-  ;;
-esac
+# Usage: screenshot    : Capture whole screen
+#        screenshot -s : Select a part of screen to capture
 
-notify-send -i ~/.config/icons/picture.png "Image copied to clipboard"
+filename="$(date '+%F-%H-%M').png"
+
+maim $1 | tee ~/pics/Screenshots/$filename | xclip -selection clipboard -t image/png
+
+notify-send -i ~/.config/icons/image.png "Image copied to clipboard"
+
