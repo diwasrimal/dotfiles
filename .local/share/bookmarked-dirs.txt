@@ -1,8 +1,5 @@
-/home/lufy/code/Songs
-/home/lufy/code/suckless/dwm
-/home/lufy/code/suckless/dwmblocks
-/home/lufy/code/suckless/dmenu
-/home/lufy/.config/nvim
-/home/lufy/.local/bin/
-/home/lufy/.local/share
-/home/lufy/code/extras
+.local/bin
+.local/bin
+.local/bin
+.local/bin
+code/Songs

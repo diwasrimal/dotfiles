@@ -8,8 +8,8 @@ dirs_exclude="venv .git node_modules"
 exclude_flag=$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')
 
 # Choose a file through dmenu
-# file=$(find $dirs -type d \( $exclude_flag \) -prune -o -type f -print | dmenu -i -l 25)
-file=$(find $dirs -type d \( $exclude_flag \) -prune -o -type f -print | fzf)
+file=$(find $dirs -type d \( $exclude_flag \) -prune -o -type f -print | dmenu -i -l 25)
+# file=$(find $dirs -type d \( $exclude_flag \) -prune -o -type f -print | fzf)
 
 # Upload file to 0x0.st via curl
 if [[ -n $file ]]; then 

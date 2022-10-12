@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Boomark current directory or all child directories
+
+red="\033[1;31m"
+green="\033[1;32m"
+white="\033[1;37m"
+
+bmfile="$HOME/.local/share/bookmarked-dirs.txt"
+
+dirs_exclude="venv .git node_modules"
+exclude_flag=$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')
+
+wd="$(printf '%s\n' "${PWD#"$HOME"/}")"
+
+# Help message
+if [ "$1" = "-h" ]; then
+  echo "Usage: 
+      bmdir    : bookmark current directory
+      bmdir -r : bookmark all child directories recursively
+      bmdir -h : show this help message and exit"
+
+# Bookmark child dirs
+elif [ "$1" = "-r" ]; then
+  dirs="$(find -type d \( $exclude_flag \) -prune -o -type d -print | sed "/^\.$/d; s,\.,$wd,")"
+  [ -z "$dirs" ] && printf "${red}No child directories!${white}\n" && exit
+
+  printf "$dirs\n\nBookmark these paths (y/n) ? "
+  read choice
+  [ "$choice" = "y" ] && echo "$dirs" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+
+# Bookmark current dir
+else
+  pwd | sed "s/\/home\/lufy\///" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+fi
+
+# TODO: 
+# [ ] - Don't add duplicate bookmarks
+# [ ] - Don't mess comments while removng duplicates
+
+# sort "$bmfile" | uniq > "$bmfile"   # Duplicate gayo, comment ni udyo 
