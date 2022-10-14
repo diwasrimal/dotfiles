@@ -17,12 +17,18 @@ fi
 # PS1='\[\033[1;34m\][\[\033[1;37m\]\u\[\033[1;31m\]@\[\033[1;37m\]\h\[\033[1;34m\]] \[\033[1;35m\]\W \[\033[1;32m\]➜\[\033[1;37m\] '
 . ~/.bash_prompt
 
+# Use vi bindings
+set -o vi
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
+
 # Options for cd
 shopt -s cdspell
 complete -d cd
 alias ..="cd .."
 alias ...="cd ../.."
 alias g='. goto-bookmarked-dirs'   # cd into a directory from bookmarked directories
+alias gop='. goto-bookmarked-dirs; nvim .'   # cd into a directory from bookmarked directories
 
 alias s='startx'
 alias vi='nvim'
