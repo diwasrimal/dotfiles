@@ -23,15 +23,16 @@ function set_bash_prompt () {
   prefix="${BLUE}[${WHITE}\u${RED}@${WHITE}\h${BLUE}] "
   dir="${PURPLE}\W "
 
-  branch=$(git branch 2> /dev/null)
-  [[ -z $branch ]] && repo="" || repo="${WHITE}  "
+  # branch=$(git branch 2> /dev/null)
+  # [[ -z $branch ]] && repo="" || repo="${WHITE}  "
 
-  PS1="${virtualenv}${prefix}${dir}${repo}${prompt} ${WHITE}"
+  # PS1="${virtualenv}${prefix}${dir}${repo}${prompt} ${WHITE}"
 
   # branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')
-  # [[ -z $branch_name ]] && branch="" || branch="${WHITE} ${YELLOW}${branch_name} "
+  branch_name=$(git branch 2>/dev/null | grep \* | awk '{ print $2 }')
+  [[ -z $branch_name ]] && branch="" || branch="${WHITE} ${YELLOW}(${branch_name}) "
 
-  # PS1="${virtualenv}${prefix}${dir}${branch}${prompt} ${WHITE}"
+  PS1="${virtualenv}${prefix}${dir}${branch}${prompt} ${WHITE}"
 
 }
 

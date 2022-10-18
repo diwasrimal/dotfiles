@@ -1,27 +1,39 @@
 #!/bin/bash
 
-# Get battery status and capacity
-for battery in /sys/class/power_supply/BAT?*; do 
+# Send a notification if battery is low (low status stored in ~/.cache/battery-low-status)
+notify-low () {
+  [ "$status" = "Charging" ] && return
 
-  status="$(cat "$battery/status")"
-  capacity="$(cat "$battery/capacity")"
-  [[ capacity -gt 100 ]] && capacity=100
+  if [ "$capacity" -le 10 ] && [ -z "$(grep critically-low $lowinfo)" ]; then
+    notify-send -i $HOME/.config/icons/critical-battery.png -u critical "Battery critically low!" 
+    echo "critically-low" > $lowinfo
 
-  [[ "$status" == "Charging" ]] && charging_icon="" || charging_icon=""
-  if   [[ $capacity -gt 80 ]]; then capacity_icon=' '
-  elif [[ $capacity -gt 60 ]]; then capacity_icon=' '
-  elif [[ $capacity -gt 40 ]]; then capacity_icon=' '
-  elif [[ $capacity -gt 15 ]]; then capacity_icon=' '
-  else capacity_icon=' '
+  elif [ "$capacity" -le 20 ] && [ -z "$(grep low $lowinfo)" ]; then
+    notify-send -i $HOME/.config/icons/low-battery.png -t 5500 "Battery low!"
+    echo "low" > $lowinfo
   fi
+}
 
-  if [[ -z $charging_icon ]]; then
-    printf "%s %d%%" "$capacity_icon" "$capacity"
-  else
-    printf "%s %s %d%%" "$charging_icon" "$capacity_icon" "$capacity"
-  fi
+battery="/sys/class/power_supply/BAT0"
+status="$(cat "$battery/status")"
+capacity="$(cat "$battery/capacity")"
+lowinfo="$HOME/.cache/battery-low-status"
+[ ! -e "$lowinfo" ] && touch $lowinfo
 
-done
+[ "$status" = "Charging" ] && charging_icon=" " || charging_icon=""
+[ "$capacity" -gt 100 ] && capacity=100
 
-echo
+if   [ "$capacity" -lt 15 ]; then capacity_icon='  ' 
+elif [ "$capacity" -lt 40 ]; then capacity_icon='  '
+elif [ "$capacity" -lt 60 ]; then capacity_icon='  ' 
+elif [ "$capacity" -lt 90 ]; then capacity_icon='  '
+else capacity_icon='  ' 
+fi
+                                         
+[ "$capacity" -le 20 ] && notify-low
 
+# Reset low battery information in these cases
+([ "$capacity" -gt 20 ] || [ "$status" = "Charging" ]) && [ -n $(cat "$lowinfo") ] && echo "" > $lowinfo
+
+# Report low battery, show warning color on dwm statusbar :- https://dwm.suckless.org/patches/statuscolors/
+printf "%s%s%d%%\n" "$charging_icon" "$capacity_icon" "$capacity"

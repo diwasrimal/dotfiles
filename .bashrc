@@ -17,18 +17,13 @@ fi
 # PS1='\[\033[1;34m\][\[\033[1;37m\]\u\[\033[1;31m\]@\[\033[1;37m\]\h\[\033[1;34m\]] \[\033[1;35m\]\W \[\033[1;32m\]➜\[\033[1;37m\] '
 . ~/.bash_prompt
 
-# Use vi bindings
-set -o vi
-bind -m vi-command 'Control-l: clear-screen'
-bind -m vi-insert 'Control-l: clear-screen'
-
 # Options for cd
 shopt -s cdspell
 complete -d cd
 alias ..="cd .."
 alias ...="cd ../.."
 alias g='. goto-bookmarked-dirs'   # cd into a directory from bookmarked directories
-alias gop='. goto-bookmarked-dirs; nvim .'   # cd into a directory from bookmarked directories
+alias gop='. goto-bookmarked-dirs; $EDITOR .'   # go in a bookmarked dir and open 
 
 alias s='startx'
 alias vi='nvim'
@@ -67,6 +62,9 @@ alias diff='diff --color=auto'
 alias c='xclip -selection clipboard'
 alias v='xclip -o -selection clipboard'
 
+# Programming shorcuts
+alias vba=". venv/bin/activate"
+
 # Use colors for less, man, etc.
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
@@ -77,6 +75,15 @@ export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
-# Programming shorcuts
-alias vba=". venv/bin/activate"
+
+# Use vi bindings
+set -o vi
+bind -m vi-command ".":insert-last-argument
+bind -m vi-command "\C-l.":clear-screen
+bind -m vi-insert "\C-l.":clear-screen
+bind -m vi-insert "\C-a.":beginning-of-line
+bind -m vi-insert "\C-e.":end-of-line
+bind -m vi-insert "\C-w.":backward-kill-word
+bind -m vi-insert "\C-p":previous-history
+bind -m vi-insert "\C-n":next-history
 

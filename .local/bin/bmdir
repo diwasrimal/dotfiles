@@ -7,20 +7,18 @@ green="\033[1;32m"
 white="\033[1;37m"
 
 bmfile="$HOME/.local/share/bookmarked-dirs.txt"
-
+wd="$(printf '%s\n' "${PWD#"$HOME"/}")"
 dirs_exclude="venv .git node_modules"
 exclude_flag=$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')
 
-wd="$(printf '%s\n' "${PWD#"$HOME"/}")"
-
 # Help message
-if [ "$1" = "-h" ]; then
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
   echo "Usage: 
-      bmdir    : bookmark current directory
-      bmdir -r : bookmark all child directories recursively
-      bmdir -h : show this help message and exit"
+      bmdir -c : Bookmark current directory
+      bmdir -r : Bookmark all child directories recursively
+      bmdir -e : Open bookmarks file"
 
-# Bookmark child dirs
+# Bookmark child dirs recursively
 elif [ "$1" = "-r" ]; then
   dirs="$(find -type d \( $exclude_flag \) -prune -o -type d -print | sed "/^\.$/d; s,\.,$wd,")"
   [ -z "$dirs" ] && printf "${red}No child directories!${white}\n" && exit
@@ -29,9 +27,17 @@ elif [ "$1" = "-r" ]; then
   read choice
   [ "$choice" = "y" ] && echo "$dirs" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
 
-# Bookmark current dir
-else
+# Bookmark current directory
+elif [ "$1" = "-c" ]; then
   pwd | sed "s/\/home\/lufy\///" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+
+# Open bookmarks file for editing
+elif [ "$1" = "-e" ]; then
+  $EDITOR $bmfile
+
+else
+  echo "Incorrect Usage, see bmdir -h or bmdir --help"
+  exit 1
 fi
 
 # TODO: 
