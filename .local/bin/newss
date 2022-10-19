@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# newss : Print out your newest screenshot
+
+ssdir="$HOME/pics/Screenshots"
+echo -n "$ssdir/"$(ls -t "$ssdir" | sed 1q)""
