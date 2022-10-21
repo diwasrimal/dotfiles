@@ -7,13 +7,16 @@ xmodmap ~/.Xmodmap
 # Start Network Manager
 NetworkManager &
 
+# Neovim headless mode (faster startup)
+nvim --headless &
+
 # MPD daemon start (if no other user instance exists)
 [ ! -s ~/.config/mpd/pid ] && mpd
 
 dunst &
 picom &
 
-xset r rate 200 25
+xset r rate 200 30
 
 exec dwmblocks &
 exec dwm
