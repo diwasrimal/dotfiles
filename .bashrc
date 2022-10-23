@@ -22,17 +22,19 @@ shopt -s cdspell
 complete -d cd
 alias ..="cd .."
 alias ...="cd ../.."
+alias ....="cd ../../.."
 alias g='. goto-bookmarked-dirs'   # cd into a directory from bookmarked directories
-alias gop='. goto-bookmarked-dirs; $EDITOR .'   # go in a bookmarked dir and open 
+alias gop='. goto-bookmarked-dirs; $EDITOR .'   # go and open a bookmarked directory
 
 alias s='startx'
 alias vi='nvim'
 alias smi='sudo make install'
 alias dots="/usr/bin/git --git-dir=$HOME/code/dotfiles --work-tree=$HOME"
 
-# Pacman 
+# Pacman / yay
 alias pac='sudo pacman'
 alias pacs='pacman -Ss'
+alias yays='yay -Ss'
 
 # ls
 alias ls='ls --color=auto'
