@@ -1,13 +1,21 @@
 #!/bin/bash
 
 # Boomark current directory or all child directories
+# Bookmarks stored in ~/.local/share/bookmarked-dirs.txt 
+# Paths are stored relative to $HOME
 
 red="\033[1;31m"
 green="\033[1;32m"
 white="\033[1;37m"
 
+# File with bookmarks (create file if missing)
 bmfile="$HOME/.local/share/bookmarked-dirs.txt"
+[ -e "$bmfile" ] || touch "$bmfile"
+
+# Current working directory (relative to $HOME)
 wd="$(printf '%s\n' "${PWD#"$HOME"/}")"
+
+# Never bookmark these directories
 dirs_exclude="venv .git node_modules"
 exclude_flag=$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')
 
@@ -16,24 +24,37 @@ if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
   echo "Usage: 
       bmdir -c : Bookmark current directory
       bmdir -r : Bookmark all child directories recursively
+      bmdir -s : Show bookmark status of current directory
       bmdir -e : Open bookmarks file"
 
 # Bookmark child dirs recursively
 elif [ "$1" = "-r" ]; then
-  dirs="$(find -type d \( $exclude_flag \) -prune -o -type d -print | sed "/^\.$/d; s,\.,$wd,")"
+  dirs="$(find -type d \( $exclude_flag \) -prune -o -type d -print | 
+    sed "/^\.$/d; s,\.,$wd,")"
   [ -z "$dirs" ] && printf "${red}No child directories!${white}\n" && exit
 
-  printf "$dirs\n\nBookmark these paths (y/n) ? "
+  printf "$dirs\n\nBookmark these directories (y/n) ? "
   read choice
-  [ "$choice" = "y" ] && echo "$dirs" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+  if [ "$choice" = "y" ]; then 
+    echo "$dirs" >> "$bmfile" 
+    printf "${green}Bookmarked!${white}\n"
+  fi
 
 # Bookmark current directory
 elif [ "$1" = "-c" ]; then
-  pwd | sed "s/\/home\/lufy\///" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+  echo "$wd" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+
+# Show bookmark status of current dir
+elif [ "$1" = "-s" ]; then
+  if grep -q "$wd" "$bmfile"; then
+    printf "${green}Bookmarked!${white}\n"
+  else
+    printf "${red}Not in bookmarks!${white}\n"
+  fi
 
 # Open bookmarks file for editing
 elif [ "$1" = "-e" ]; then
-  $EDITOR $bmfile
+  $EDITOR "$bmfile"
 
 else
   echo "Incorrect Usage, see bmdir -h or bmdir --help"
