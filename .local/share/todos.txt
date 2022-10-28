@@ -1,0 +1,14 @@
+# Pending commits:
+
+[ ] /some/repository    : commit message
+
+
+# TODO:
+
+[ ] /some/path      : Task
+
+# Icons
+📁
+
+# Note
+
