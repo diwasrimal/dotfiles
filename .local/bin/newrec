@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Get the latest recording
+recording_dir="$HOME/vids/recs"
+echo -n "$recording_dir/"$(ls -t "$recording_dir" | sed 1q)""

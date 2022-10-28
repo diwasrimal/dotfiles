@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. $HOME/code/Songs/venv/bin/activate
+cd $HOME/Music
+python tagedit.py
+cd - 1>/dev/null
+deactivate
