@@ -1,8 +1,8 @@
 # Restore previous wallpaper
-nitrogen --restore
+nitrogen --restore 
 
 # Map right Alt key as super
-xmodmap ~/.Xmodmap
+xmodmap ~/.Xmodmap &
 
 # Start Network Manager
 NetworkManager &
@@ -11,12 +11,12 @@ NetworkManager &
 nvim --headless &
 
 # MPD daemon start (if no other user instance exists)
-[ ! -s ~/.config/mpd/pid ] && mpd
+[ ! -s ~/.config/mpd/pid ] && mpd &
 
 dunst &
 picom &
 
-xset r rate 200 30
+xset r rate 200 30 &
 
 exec dwmblocks &
 exec dwm

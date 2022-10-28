@@ -1,1 +1,1 @@
-. ~/.config/autostart/dwm
+. ~/.config/autostart/awesome

@@ -17,6 +17,11 @@ fi
 # PS1='\[\033[1;34m\][\[\033[1;37m\]\u\[\033[1;31m\]@\[\033[1;37m\]\h\[\033[1;34m\]] \[\033[1;35m\]\W \[\033[1;32m\]➜\[\033[1;37m\] '
 . ~/.bash_prompt
 
+# Start tmux 
+# if [ "$TERM" != "linux" ]; then
+#   [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
+# fi
+
 # Options for cd
 shopt -s cdspell
 complete -d cd
@@ -27,7 +32,7 @@ alias g='. goto-bookmarked-dirs'   # cd into a directory from bookmarked directo
 alias gop='. goto-bookmarked-dirs; $EDITOR .'   # go and open a bookmarked directory
 
 alias s='startx'
-alias vi='nvim'
+alias nv='nvim'
 alias smi='sudo make install'
 alias dots="/usr/bin/git --git-dir=$HOME/code/dotfiles --work-tree=$HOME"
 
