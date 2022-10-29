@@ -7,7 +7,8 @@
 
 ## Import files (Colors, Fonts, Etc)
 import:
-  - ~/.config/alacritty/colors.yml
+  # - ~/.config/alacritty/colors.yml
+  - ~/.config/alacritty/colorschemes/catppuccin-mocha.yml
   - ~/.config/alacritty/fonts.yml
 
 ## Set environment variables
@@ -22,8 +23,8 @@ window:
     lines: 24
 
   padding:
-    x: 12
-    y: 12
+    x: 4
+    y: 4
 
   decorations: full
   startup_mode: Windowed
@@ -34,7 +35,7 @@ window:
   multiplier: 3
 
 ## Background opacity
-  opacity: 0.92
+  opacity: 0.65
 
 ## Cursor
 cursor:
