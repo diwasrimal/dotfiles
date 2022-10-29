@@ -34,7 +34,7 @@ alias gop='. goto-bookmarked-dirs; $EDITOR .'   # go and open a bookmarked direc
 alias s='startx'
 alias nv='nvim'
 alias smi='sudo make install'
-alias dots="/usr/bin/git --git-dir=$HOME/code/dotfiles --work-tree=$HOME"
+alias dots="/usr/bin/git --git-dir=$HOME/code/dotfiles-bare --work-tree=$HOME"
 
 # Pacman / yay
 alias pac='sudo pacman'
