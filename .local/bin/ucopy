@@ -4,8 +4,8 @@
 
 unicode_dir="$HOME/.local/share/chars"
 
-# Choose a unicode file
-file="$(ls "$unicode_dir" | dmenu -l 3 -i -p "From:")"
+# Choose a unicode file (Instant select with dmenu :- https://tools.suckless.org/dmenu/patches/instant/)
+file="$(ls "$unicode_dir" | dmenu -n -l 3 -i -p "From:")"
 [ -z "$file" ] && exit
 
 # Chose a character
@@ -14,5 +14,5 @@ char=$(cut -d ';' -f1 "$unicode_dir/$file" | dmenu -p "Select:" -i -l 30 | sed "
 
 # Copy to clipboard
 printf "$char" | xclip -selection clipboard
-notify-send "'$char' copied to clipboard." &
+notify-send -i ~/.config/icons/clipboard.png "'$char' in clipboard." &
 

@@ -1,4 +1,0 @@
-#!/bin/bash
-
-date "+ %b %d %a |  %I:%M %p"
-# date "+📅 %b %d %a | 🕓 %I:%M %p"
