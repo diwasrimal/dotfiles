@@ -1,0 +1,8 @@
+#!/bin/bash
+
+selected="$(man -k . | fzf)"
+
+manual="$(echo "$selected" | awk '{ print $1 }')"
+page="$(echo "$selected" | awk '{ print $2 }' | sed 's/(//; s/)//')"
+
+man $page $manual

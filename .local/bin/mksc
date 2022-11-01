@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Make a script file
+
+if [ -e "$1" ]; then
+  echo "File exists!"
+else
+  echo "#!/bin/bash" > "$1"
+  chmod +x "$1"
+fi

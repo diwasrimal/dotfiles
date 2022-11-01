@@ -1,12 +1,14 @@
 [alias]
   b = branch
-  cm = commit -m 
-  cl = clone --depth 1
+  d = diff
   au = add -u
+  cl = clone --depth 1
+  cm = commit -m 
+	lg = log --oneline --graph
 	st = status -s
   sw = switch
-	lg = log --oneline --graph
   lsf = ls-files
+  rmc = rm --cached
   undo = reset --soft HEAD~1
 [user]
 	name = Diwas10
