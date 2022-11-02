@@ -7,4 +7,5 @@ if [ -e "$1" ]; then
 else
   echo "#!/bin/bash" > "$1"
   chmod +x "$1"
+  ${EDITOR:-nano} "$1"
 fi

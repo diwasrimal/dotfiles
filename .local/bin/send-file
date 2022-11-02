@@ -1,26 +1,34 @@
 #!/bin/bash
 
-function send () {
-  # Upload file to 0x0.st via curl
-  if [[ -n $file ]]; then 
-    curl -F "file=@$file" 0x0.st | xclip -sel c
+# Search files and send them to 0x0.st
+# Dirs to search files from are stored in 
+# ~/.local/share/file-searchable-dirs.txt
+
+# Send the chosen file
+send () {
+  curl -F "file=@$1" 0x0.st | xclip -sel c &&
     notify-send -i ~/.config/icons/link.png "Link copied to clipboard."
-  else
-    notify-send -i ~/.config/icons/warn.png "No file selected."
-  fi
 }
 
+# Quickly send file if given as an argument
+[ -n "$1" ] && [ -f "$1" ] && send "$1" && exit
+
+storage="$HOME/.local/share/file-searchable-dirs.txt"
+[ -e "$storage" ] || echo "$HOME" > "$storage"
+
 # List of dirs to search files from
-dirs=$(cat $HOME/.local/share/file-find-dirs.txt | tr '\n' ' ')
+dirs="$(cat "$storage" | tr '\n' ' ')"
 
 # Exclude unwanted directories
 dirs_exclude="venv .git node_modules"
-exclude_flag=$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')
+exclude_flag="$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')"
 
 # Choose a file through dmenu
-file=$(find $dirs -type d \( $exclude_flag \) -prune -o -type f -print | dmenu -p " " -i -l 25)
-# file=$(find $dirs -type d \( $exclude_flag \) -prune -o -type f -print | fzf)
+file="$(find $dirs -type d \( $exclude_flag \) \
+      -prune -o -type f -print \
+      | dmenu -p " " -i -l 25)"
+[ -z "$file" ] && exit
 
-send | $file
+send "$file"
 
 

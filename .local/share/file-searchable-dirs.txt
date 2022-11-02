@@ -1,0 +1,6 @@
+/home/lufy/dl
+/home/lufy/Music
+/home/lufy/code
+/home/lufy/vids
+/home/lufy/pics
+/home/lufy/docs
