@@ -1,11 +1,34 @@
 #!/bin/bash
 
-# Usage: screenshot    : Capture whole screen
-#        screenshot -s : Select a part of screen to capture
-
+# Caputure screenshots
+       
 filename="$(date '+%F-%H-%M').png"
+save_cmd="tee ~/pics/Screenshots/$filename | xclip -selection clipboard -t image/png"
 
-maim $1 | tee ~/pics/Screenshots/$filename | xclip -selection clipboard -t image/png
+case "$1" in
 
-notify-send -i ~/.config/icons/image.png "Image copied to clipboard"
+  # Capture a part of screen
+  "-s") maim -s | eval "$save_cmd" 
+  ;;
 
+  # Capture active window
+  # TODO: fix background issue in transparent windows
+  "-w") maim -i "$(xdotool getactivewindow)" | eval "$save_cmd"
+  ;;
+
+  # Capture entire screen
+  "") maim | eval "$save_cmd"
+  ;;
+
+  # Print usage otherwise
+  *) echo "Usage: 
+    screenshot    : Capture entire screen
+    screenshot -s : Capture a selection
+    screenshot -w : Capture current window"
+    exit
+  ;;
+esac
+
+if [ -n "$(xclip -o -selection clipboard | sed 1q)" ]; then
+  notify-send -i ~/.config/icons/image.png "Image copied to clipboard"
+fi
