@@ -13,14 +13,8 @@ elif [ -f /opt/local/etc/profile.d/bash_completion.sh ]; then
 fi
 
 # Prompt
-# PS1='\[\033[1;34m\][\[\033[1;37m\]\u\[\033[1;31m\]@\[\033[1;37m\]\h\[\033[1;34m\]] \[\033[1;35m\]\w\n\[\033[1;32m\]➜\[\033[1;37m\] '
-# PS1='\[\033[1;34m\][\[\033[1;37m\]\u\[\033[1;31m\]@\[\033[1;37m\]\h\[\033[1;34m\]] \[\033[1;35m\]\W \[\033[1;32m\]➜\[\033[1;37m\] '
 . ~/.bash_prompt
-
-# Start tmux 
-# if [ "$TERM" != "linux" ]; then
-#   [ -z "$TMUX"  ] && { tmux attach || exec tmux new-session && exit;}
-# fi
+# PS1='\[\033[1;34m\][\[\033[1;37m\]\u\[\033[1;31m\]@\[\033[1;37m\]\h\[\033[1;34m\]] \[\033[1;35m\]\W \[\033[1;32m\]➜\[\033[1;37m\] '
 
 # Options for cd
 shopt -s cdspell
@@ -35,7 +29,7 @@ alias s='startx'
 alias nv='nvim'
 alias smi='sudo make install'
 alias dots="/usr/bin/git --git-dir=$HOME/code/dotfiles-bare --work-tree=$HOME"
-alias dotsignore="cd; dots status -s | grep '?' | sed 's/?? //; 1i\ ' \
+alias dotsignore="cd; dots status -s | grep '?' | sed 's/?? //; 1i\\' \
                   >> ~/.gitignore; nvim ~/.gitignore; cd - >/dev/null 2>&1"
 
 # Pacman / yay
@@ -66,6 +60,7 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 alias diff='diff --color=auto'
+alias ip='ip -color=auto'
 
 # copy pase
 alias c='xclip -selection clipboard'
@@ -107,4 +102,12 @@ export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
+remindme() {
+  sed -n '/^Remainders/,$p; $i\\' ~/.local/share/todos.txt
+}
 
+# Remind me of my remainders
+if ! [ -f /tmp/bash-loaded ] && [ "$TERM" != "linux" ]; then
+  remindme
+  touch /tmp/bash-loaded
+fi
