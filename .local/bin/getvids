@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Download vidoes using yt-dlp
+
+yt-dlp -o "%(title)s.%(ext)s" "$@" 

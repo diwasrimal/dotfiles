@@ -106,8 +106,8 @@ remindme() {
   sed -n '/^Remainders/,$p; $i\\' ~/.local/share/todos.txt
 }
 
-# Remind me of my remainders
-if ! [ -f /tmp/bash-loaded ] && [ "$TERM" != "linux" ]; then
-  remindme
-  touch /tmp/bash-loaded
-fi
+# # Remind me of my remainders
+# if ! [ -f /tmp/bash-loaded ] && [ "$TERM" != "linux" ]; then
+#   remindme
+#   touch /tmp/bash-loaded
+# fi

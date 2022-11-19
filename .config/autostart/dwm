@@ -7,6 +7,8 @@ xmodmap ~/.Xmodmap &
 # Start Network Manager
 NetworkManager &
 
+Thunar --daemon &
+
 # Neovim headless mode (faster startup)
 nvim --headless &
 
@@ -17,6 +19,7 @@ dunst &
 picom &
 
 xset r rate 200 30 &
+xset -b 
 
 exec dwmblocks &
 exec dwm

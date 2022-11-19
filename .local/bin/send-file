@@ -7,7 +7,9 @@
 # Send the chosen file
 send () {
   curl -F "file=@$1" 0x0.st | xclip -sel c &&
-    notify-send -i ~/.config/icons/link.png "Link copied to clipboard."
+    notify-send -i ~/.config/icons/link.png "Link copied to clipboard." &&
+    xclip -o -sel c >> ~/.cache/send-file-history
+  
 }
 
 # Quickly send file if given as an argument
