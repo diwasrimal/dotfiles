@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sudo reflector \
+  --country India,Worldwide \
+  --latest 20 \
+  --protocol http,https \
+  --sort rate \
+  --save /etc/pacman.d/mirrorlist
+

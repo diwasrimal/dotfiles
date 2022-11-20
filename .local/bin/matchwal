@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Make colorschemes from a wallpaper with pywal
+
+walldir="$HOME/pics/wall"
+
+[ -z "$1" ] && echo "Usage: matchwal wallpaper" && exit
+wall="$1"
+
+# Generate pywal colors
+wal -i "$wall" >/dev/null
+sed -i 'N;$!P;D' $HOME/.cache/wal/colors-wal-dwm.h
+
+# Load alacritty 
+$HOME/.config/alacritty/load-pywal-colors.sh
+
+# Recompile dwm with new colors
+cd $HOME/code/suckless/dwm && sudo make install >/dev/null
