@@ -7,8 +7,8 @@
 
 ## Import files (Colors, Fonts, Etc)
 import:
-  # - ~/.config/alacritty/colors.yml
-  - ~/.config/alacritty/colorschemes/catppuccin-mocha.yml
+  # - ~/.config/alacritty/colorschemes/catppuccin-mocha.yml
+  - ~/.config/alacritty/colors.yml
   - ~/.config/alacritty/fonts.yml
 
 ## Set environment variables
@@ -57,3 +57,4 @@ key_bindings:
 #  program: /bin/zsh
 #  args:
 #    - --login
+# BEGIN ACE

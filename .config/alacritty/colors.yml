@@ -1,27 +1,27 @@
-# Colors (Gruvbox Material Dark Medium)
+# BEGIN ACE
 colors:
   primary:
-    background: '0x282828'
-      # background: '#1E1E2E'
-    foreground: '0xdfbf8e'
-
+    background: '#12081c'
+    foreground: '#f0d0da'
+  cursor:
+    text:       '#12081c'
+    cursor:     '#f0d0da'
   normal:
-    black:   '0x665c54'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe78a4e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
-
+    black:      '#12081c'
+    red:        '#C57CA2'
+    green:      '#9B82AE'
+    yellow:     '#B58BAF'
+    blue:       '#C992B1'
+    magenta:    '#DBA1BB'
+    cyan:       '#D0A7C2'
+    white:      '#f0d0da'
   bright:
-    black:   '0x928374'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe3a84e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
- 
+    black:      '#a89198'
+    red:        '#C57CA2'
+    green:      '#9B82AE'
+    yellow:     '#B58BAF'
+    blue:       '#C992B1'
+    magenta:    '#DBA1BB'
+    cyan:       '#D0A7C2'
+    white:      '#f0d0da'
+# END ACE
