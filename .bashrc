@@ -25,6 +25,8 @@ alias ....="cd ../../.."
 alias g='. goto-bookmarked-dirs'   # cd into a directory from bookmarked directories
 alias gop='. goto-bookmarked-dirs; $EDITOR .'   # go and open a bookmarked directory
 
+alias dunstconf="$EDITOR $HOME/.config/dunst/dunstrc"
+alias alaconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
 alias s='startx'
 alias nv='nvim'
 alias smi='sudo make install'
@@ -102,9 +104,9 @@ export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
-remindme() {
-  sed -n '/^Remainders/,$p; $i\\' ~/.local/share/todos.txt
-}
+# remindme() {
+#   sed -n '/^Remainders/,$p; $i\\' ~/.local/share/todos.txt
+# }
 
 # # Remind me of my remainders
 # if ! [ -f /tmp/bash-loaded ] && [ "$TERM" != "linux" ]; then
