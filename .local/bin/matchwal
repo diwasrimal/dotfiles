@@ -5,14 +5,36 @@
 walldir="$HOME/pics/wall"
 
 [ -z "$1" ] && echo "Usage: matchwal wallpaper" && exit
+! [ -e "$1" ] && echo "File not found" && exit
 wall="$1"
 
 # Generate pywal colors
+echo "Generating colorscheme..."
 wal -i "$wall" >/dev/null
-sed -i 'N;$!P;D' $HOME/.cache/wal/colors-wal-dwm.h
+sed -i '11q' $HOME/.cache/wal/colors-wal-dwm.h
+# sed -i 'N;$!P;D' $HOME/.cache/wal/colors-wal-dwm.h
 
 # Load alacritty 
-$HOME/.config/alacritty/load-pywal-colors.sh
+echo "Loading alacritty..."
+$HOME/.config/alacritty/load-pywal-colors.sh >/dev/null
 
 # Recompile dwm with new colors
-cd $HOME/code/suckless/dwm && sudo make install >/dev/null
+echo "Compiling dwm..."
+cd $HOME/code/suckless/dwm && sudo make clean install >/dev/null
+cd - >/dev/null 2>&1
+
+# Change icon colors used in notifications 
+# Uses 'convert' from imagemagick
+newcolor="$(sed -n '/sel_bg/p' $HOME/.cache/wal/colors-wal-dwm.h | sed -e 's/.*"\(.*\)".*/\1/')"
+icons=$HOME/.config/icons
+[ -z $newcolor ] && echo "Cannot find newicon color" && exit
+! [ -d $icons ]  && echo "dir $icons doesnot exist!" && exit
+
+echo "Making new icons..."
+tempdir=$(mktemp -d)
+for i in $(ls $icons); do
+  convert "$icons/$i" -fill $newcolor -colorize 100 "$tempdir/$i"
+done
+mv $tempdir/* $icons/
+cp $HOME/pics/icons/default/* $icons/
+
