@@ -1,6 +1,3 @@
-# Restore previous wallpaper
-nitrogen --restore 
-
 # Map right Alt key as super
 xmodmap ~/.Xmodmap &
 
@@ -20,6 +17,9 @@ picom &
 
 xset r rate 200 30 &
 xset -b 
+
+# Restore previous wallpaper
+nitrogen --restore 
 
 exec dwmblocks &
 exec dwm

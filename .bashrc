@@ -29,6 +29,7 @@ alias dunstconf="$EDITOR $HOME/.config/dunst/dunstrc"
 alias alaconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
 alias s='startx'
 alias nv='nvim'
+alias vn='viewnior'
 alias smi='sudo make install'
 alias dots="/usr/bin/git --git-dir=$HOME/code/dotfiles-bare --work-tree=$HOME"
 alias dotsignore="cd; dots status -s | grep '?' | sed 's/?? //; 1i\\' \
@@ -56,11 +57,8 @@ alias gaa='git add -u; git add -A'
 alias gc='git commit -m'
 alias gp='git push origin main'
 
-# Colorize grep output (good for log files)
+# Colorize outputs
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'
 
@@ -97,7 +95,7 @@ bind -m vi-insert "\C-n":next-history
 # Use colors for less, man, etc.
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
-export LESS_TERMCAP_so=$'\e[01;46;31m' # begin reverse video
+export LESS_TERMCAP_so=$'\e[01;46;30m' # begin reverse video
 export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
 export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
 export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video

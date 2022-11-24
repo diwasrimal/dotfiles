@@ -4,3 +4,6 @@
 /home/lufy/vids
 /home/lufy/pics
 /home/lufy/docs
+/home/lufy/.local/bin/
+/home/lufy/.local/share/
+
