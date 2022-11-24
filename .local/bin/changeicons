@@ -1,0 +1,13 @@
+#!/bin/bash
+
+newcolor="$1"
+[ -z "$newcolor" ] && echo "Provide new icon color" && exit
+
+sample=$HOME/pics/icons/green
+
+echo "Saving icons in 'new_icons' directory..."
+mkdir new_icons
+for icon in $(ls $sample); do
+  convert "$sample/$icon" -fill $newcolor -colorize 100 "new_icons/$icon"
+done
+

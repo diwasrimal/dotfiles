@@ -3,7 +3,7 @@
 # Caputure screenshots
        
 filename="$(date '+%F-%H-%M').png"
-save_cmd="tee ~/pics/Screenshots/$filename | xclip -selection clipboard -t image/png"
+save_cmd="tee ~/pics/ss/$filename | xclip -selection clipboard -t image/png"
 
 case "$1" in
 

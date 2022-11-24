@@ -9,4 +9,7 @@ bmfile="$HOME/.local/share/bookmarked-dirs.txt"
 
 bms="$(sed '/^#/d; /^$/d' "$bmfile")"
 
-[ -n "$bms" ] && cd "$HOME/$(echo "$bms" | fzf)" || printf "\033[1;31mNo bookmarks listed!\033[1;37m\n"
+[ -z "$bms" ] && printf "\033[1;31mNo bookmarks listed!\033[1;37m\n"
+selected="$HOME/$(echo "$bms" | fzf)"
+
+[ -d "$selected" ] && cd "$selected" || printf "\033[1;31mNo such directory!\033[1;37m\n"

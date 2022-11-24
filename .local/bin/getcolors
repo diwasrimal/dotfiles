@@ -1,27 +1,29 @@
 #!/usr/bin/env python
 
-import matplotlib as mpl
-import sys
-import os
+import argparse
+from os.path import exists, expanduser
+from matplotlib import colors
 from PIL import Image
 
-if len(sys.argv) < 2:
-    sys.exit("Usage: getcolors image_file")
+parser = argparse.ArgumentParser(description="Find colors in an image file.")
+parser.add_argument("file", help="Image file to find colors from.")
+args = parser.parse_args()
 
-file = sys.argv[1]
-if not file in os.listdir():
-    sys.exit("File not found")
+file = expanduser(args.file)
+if not exists(file):
+    print("File doesnot exist!")
+    exit()
+
 
 image = Image.open(file)
 width, height = image.size
 
-found_colors = [ "#000000" ]
-
+# Print the first colorful pixel
 for x in range(width):
     for y in range(height):
         rgba = [ px / 255 for px in image.getpixel((x,y)) ]
-        color = mpl.colors.rgb2hex(rgba)
-        if color not in found_colors:
+        color = colors.rgb2hex(rgba)
+        if color != "#000000":
             print(f"{color} at ({x}, {y})")
-            found_colors.append(color)
+            exit()
 

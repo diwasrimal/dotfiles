@@ -21,7 +21,7 @@ parser.add_argument("-o",
 args = parser.parse_args()
 
 print(f"Changing {args.sub_color} with {args.rep_color}")
-print(f"Saving {args.file} to directory '{args.outdir}'...")
+print(f"Saving {', '.join(args.file)} to directory '{args.outdir}'")
 
 # Replacement color value in rgb tuple
 rep_rgb = tuple( [ int(val * 255) for val in mpl.colors.to_rgb(args.rep_color) ])
