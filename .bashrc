@@ -31,7 +31,7 @@ alias s='startx'
 alias nv='nvim'
 alias vn='viewnior'
 alias smi='sudo make install'
-alias dots="/usr/bin/git --git-dir=$HOME/code/dotfiles-bare --work-tree=$HOME"
+alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias dotsignore="cd; dots status -s | grep '?' | sed 's/?? //; 1i\\' \
                   >> ~/.gitignore; nvim ~/.gitignore; cd - >/dev/null 2>&1"
 
