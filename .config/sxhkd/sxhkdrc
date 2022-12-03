@@ -1,0 +1,38 @@
+# Reload sxhkd configuration file
+super + r
+  kill -SIGUSR1 $(pidof sxhkd)
+
+super + Return
+  $TERMINAL
+
+super + p 
+  dmenu_run
+
+# Screen capture
+Print
+  screenshot
+
+super + Print
+  screenshot -s
+
+# Brightness control
+XF86MonBrightness{Up,Down}  
+  brightnessctl s 80{+,-}
+
+# Volume control
+XF86Audio{Raise,Lower}Volume
+  pamixer --allow-boost -{i,d} 3; kill -SIGRTMIN+5 $(pidof dwmblocks)
+
+XF86AudioMute
+  pamixer -t; kill -SIGRTMIN+5 $(pidof dwmblocks)
+
+super + XF86AudioMute
+  mictoggle
+
+# Select unicode characters
+super + e; {e,i,m}
+  ucopy {emoji,icons,math_symbols}
+
+XF86TouchpadToggle
+  touchpad-toggle.sh
+
