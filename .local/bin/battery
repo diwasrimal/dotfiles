@@ -16,7 +16,7 @@ notify_low () {
 
   # Battery critically low
   if [ "$capacity" -le 10 ] && ! grep -q critically-low "$lowinfo_file"; then
-    notify-send -i "$HOME/.config/icons/critical-battery.png" -u critical "Battery critically low!" 
+    notify-send -i "$HOME/.config/icons/default/critical-battery.png" -u critical "Battery critically low!" 
     echo critically-low >"$lowinfo_file"
 
   # Battery low but not critical

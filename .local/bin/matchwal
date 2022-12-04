@@ -20,21 +20,22 @@ $HOME/.config/alacritty/load-pywal-colors.sh >/dev/null
 
 # Recompile dwm with new colors
 echo "Compiling dwm..."
-cd $HOME/code/suckless/dwm && sudo make clean install >/dev/null
+cd $HOME/.local/src/dwm && sudo make clean install >/dev/null
 cd - >/dev/null 2>&1
 
 # Change icon colors used in notifications 
 # Uses 'convert' from imagemagick
 newcolor="$(sed -n '/sel_bg/p' $HOME/.cache/wal/colors-wal-dwm.h | sed -e 's/.*"\(.*\)".*/\1/')"
-icons=$HOME/.config/icons
+icons_dir=$HOME/.config/icons
+tempdir=$(mktemp -d)
+
 [ -z $newcolor ] && echo "Cannot find newicon color" && exit
 ! [ -d $icons ]  && echo "dir $icons doesnot exist!" && exit
 
-echo "Making new icons..."
-tempdir=$(mktemp -d)
-for i in $(ls $icons); do
-  convert "$icons/$i" -fill $newcolor -colorize 100 "$tempdir/$i"
+echo "Changing icons at $icons_dir..."
+for i in $(find $icons_dir -maxdepth 1 -type f); do
+  convert "$i" -fill $newcolor -colorize 100 "$tempdir/${i#$icons_dir/}"
 done
-mv $tempdir/* $icons/
-cp $HOME/pics/icons/default/* $icons/
 
+mv $tempdir/* $icons_dir/
+rmdir $tempdir

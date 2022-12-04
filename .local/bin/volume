@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ $(pamixer --get-mute) == true ]] && echo 婢 && exit
+[[ $(pamixer --get-mute) == true ]] && echo '婢' && exit
 
 vol="$(pamixer --get-volume)"
 

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# Set the opacity of alacritty
-
-sed -i "s/\(.*opacity:\).*/\1 $1/" $HOME/.config/alacritty/alacritty.yml

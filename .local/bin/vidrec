@@ -1,7 +1,10 @@
 #!/bin/bash
 
+dest=$HOME/vids/recs
+[ -d $dest ] || mkdir -p $dest 
+
 res="$(xrandr | grep '*' | awk '{ print $1 }')"
 
 ffmpeg -y -f x11grab -s $res -i :0.0 \
   -f alsa -i default \
-  "$HOME/vids/recs/"$(date '+%F_%H-%M-%S')".$1"
+  "$dest/$(date '+%F_%H-%M-%S').$1"

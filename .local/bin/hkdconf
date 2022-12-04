@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Open the sxhkd config file
+
+$EDITOR ~/.config/sxhkd/sxhkdrc

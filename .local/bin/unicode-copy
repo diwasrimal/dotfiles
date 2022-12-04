@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Copy unicode characters from a file
+
+[ -z "$1" ] && echo "Incorrect usage!" && exit
+file="$HOME/.local/share/chars/$1"
+
+! [ -f $file ] && exit
+
+# Chose a character
+char=$(cut -d ';' -f1 "$file" | dmenu -p "Select:" -i -l 30 | sed "s/ .*//")
+[ -z "$char" ] && exit
+
+# Type char and copy to clipboard
+echo -n $char | xclip 
+xdotool click --window $(xdotool getactivewindow) 2
+echo -n $char | xclip -sel c
+notify-send -i ~/.config/icons/clipboard.png "'$char' in clipboard." 

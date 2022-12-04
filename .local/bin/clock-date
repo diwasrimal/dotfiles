@@ -1,4 +1,4 @@
 #!/bin/bash
 
 date "+ %b %d %a"
-# date "+📅 %b %d %a
+# date "+📆 %b %d %a"

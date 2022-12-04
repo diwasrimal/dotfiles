@@ -2,7 +2,7 @@
 
 sudo reflector \
   --country India,Worldwide \
-  --latest 20 \
+  --latest 10 \
   --protocol http,https \
   --sort rate \
   --save /etc/pacman.d/mirrorlist

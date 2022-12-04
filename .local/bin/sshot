@@ -2,8 +2,10 @@
 
 # Caputure screenshots
        
+ssdir=${XDG_PICTURES_DIR:-$HOME/Pictures}/ss
+! [ -d $ssdir ] && mkdir -p $ssdir
 filename="$(date '+%F-%H-%M').png"
-save_cmd="tee ~/pics/ss/$filename | xclip -selection clipboard -t image/png"
+save_cmd="tee $ssdir/$filename | xclip -selection clipboard -t image/png"
 
 case "$1" in
 
@@ -22,9 +24,9 @@ case "$1" in
 
   # Print usage otherwise
   *) echo "Usage: 
-    screenshot    : Capture entire screen
-    screenshot -s : Capture a selection
-    screenshot -w : Capture current window"
+    sshot    : Capture entire screen
+    sshot -s : Capture a selection
+    sshot -w : Capture current window"
     exit
   ;;
 esac

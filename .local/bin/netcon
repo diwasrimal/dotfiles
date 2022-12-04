@@ -4,9 +4,9 @@
 
 ssid="$(nmcli d w l | dmenu -l 6 -i -p "Network:" | awk '{ print $2 }')"
 
-[ -n "$ssid" ] && pass="$(dmenu -p "Password:" </dev/null)"
+[ -n "$ssid" ] && pass="$(dmenu -p "Password:" </dev/null)" || exit
 
-[ -n "$pass" ] && nmcli device wifi connect "$ssid" password "$pass"
+[ -n "$pass" ] && nmcli device wifi connect "$ssid" password "$pass" || exit
 
 if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
   notify-send "Connected to $ssid" -i $HOME/.config/icons/wifi-enabled.png

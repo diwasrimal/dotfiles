@@ -1,0 +1,8 @@
+#!/bin/bash
+
+file=$HOME/.local/share/todos.txt 
+! [ -f $file ] && echo "No todo file!" 
+
+count=$(sed -n '/\[ \]/p' $file | wc -l)
+echo "🔔 $count"
+
