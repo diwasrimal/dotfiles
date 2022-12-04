@@ -1,23 +1,22 @@
-# Reload sxhkd configuration file
+# 
+# Scripts used from ~/.local/bin
+# Available at https://github.com/diwasrimal/dotfiles.git
+#
+
+# Reload sxhkd keybindings
 super + r
   kill -SIGUSR1 $(pidof sxhkd)
 
-super + Return
-  $TERMINAL
-
-super + p 
-  dmenu_run
+# Brightness control
+XF86MonBrightness{Up,Down}  
+  $HOME/.local/bin/brightness {+,-}
 
 # Screen capture
 Print
-  screenshot
+  $HOME/.local/bin/sshot
 
 super + Print
-  screenshot -s
-
-# Brightness control
-XF86MonBrightness{Up,Down}  
-  brightnessctl s 80{+,-}
+  $HOME/.local/bin/sshot -s
 
 # Volume control
 XF86Audio{Raise,Lower}Volume
@@ -26,13 +25,19 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute
   pamixer -t; kill -SIGRTMIN+5 $(pidof dwmblocks)
 
+# Music controls
+XF86Audio{Play,Prev,Next}
+  $HOME/.local/bin/handlemusic {toggle,prev,next}
+
+# Toggle microphone
 super + XF86AudioMute
-  mictoggle
+  $HOME/.local/bin/mictoggle
 
 # Select unicode characters
 super + e; {e,i,m}
-  ucopy {emoji,icons,math_symbols}
+  $HOME/.local/bin/unicode-copy {emoji,icons,math_symbols}
 
+# Toggle touchpad
 XF86TouchpadToggle
-  touchpad-toggle.sh
+  $HOME/.local/bin/touchpad-toggle
 
