@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . $HOME/code/Songs/venv/bin/activate
-cd $HOME/Music
+cd ${XDG_MUSIC_DIR:-$HOME/Music}
 python tagedit.py
 cd - 1>/dev/null
 deactivate

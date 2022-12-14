@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Handle your music playlist
+
+[ -z "$1" ] && echo "Incorrect Usage" && exit
+option="$1"
+
+[ "$(mpc | wc -l)" = "1" ] && exit
+
+song=$(mpc "$option" | sed '1q')
+artdir=${XDG_MUSIC_DIR:-$HOME/Music}/albumarts
+art=$(echo $song | sed 's/.* - //; s/$/\.png/')
+echo "Album art: $artdir/$art"
+
+# Try to replace previous music notification
+noti_file="/tmp/music-noti-id"
+[ -s $noti_file ] && replace_flag="-r $(cat $noti_file)"
+
+[ "$1" = "toggle" ] && time_flag="-t 1000" 
+if mpc | grep -q paused; then
+  status="Paused"
+else
+  status="Playing"
+fi
+
+notify-send $replace_flag $time_flag -i "$artdir/$art" "$status" "$song" -p > $noti_file
