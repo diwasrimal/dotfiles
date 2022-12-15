@@ -2,4 +2,9 @@
 
 # Download vidoes using yt-dlp
 
-yt-dlp -o "%(title)s.%(ext)s" "$@" 
+# Download playlist
+if [ "$1" = "-p" ]; then
+    yt-dlp -f "[ext=mp4]" -o "%(playlist_index)s - %(title)s.%(ext)s" "$1"
+else
+  yt-dlp -o "%(title)s.%(ext)s" "$@" 
+fi

@@ -1,1 +1,1 @@
-. ~/.config/autostart/dwm
+. ~/.config/startx/dwm

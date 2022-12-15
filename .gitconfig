@@ -8,8 +8,11 @@
 	st = status -s
   sw = switch
   lsf = ls-files
+  lst = ls-tree -r --name-only
   rmc = rm --cached
   undo = reset --soft HEAD~1
+  amend = commit --amend
+  recon = rebase --continue
 [user]
 	name = Diwas10
 	email = rimaldiwas10@gmail.com

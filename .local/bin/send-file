@@ -1,15 +1,14 @@
 #!/bin/bash
 
 # Search files and send them to 0x0.st
-# Dirs to search files from are stored in 
+# Directories to search files from are stored in 
 # ~/.local/share/file-searchable-dirs.txt
 
 # Send the chosen file
 send () {
-  curl -F "file=@$1" 0x0.st | xclip -sel c &&
-    notify-send -i ~/.config/icons/link.png "Link copied to clipboard." &&
-    xclip -o -sel c >> ~/.cache/send-file-history
-  
+  curl -F "file=@$1" https://0x0.st | xclip -sel c &&
+    notify-send -i $HOME/.config/icons/link.png "Link copied to clipboard." &&
+    echo "$(xclip -o -sel c) - \"$1\"" >> $HOME/.cache/send-file-history
 }
 
 # Quickly send file if given as an argument
@@ -29,8 +28,7 @@ exclude_flag="$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')"
 file="$(find $dirs -type d \( $exclude_flag \) \
       -prune -o -type f -print \
       | dmenu -p " " -i -l 25)"
-[ -z "$file" ] && exit
 
-send "$file"
+[ -n "$file" ] && send "$file"
 
 

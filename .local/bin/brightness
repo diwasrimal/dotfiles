@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Control your screen brightness
+
+[ -z "$1" ] && echo "Usage: brightness +|-" && exit
+
+noti_file=/tmp/brightness-noti-id
+[ -s $noti_file ] && replace_flag="-r $(cat $noti_file)"
+
+brightnessctl s 80$1
+notify-send $replace_flag -i $HOME/.config/icons/brightness.png \
+  "Brightness: $(brightnessctl | grep '%' | sed 's/.*(\(.*\))/\1/')" \
+  -p > $noti_file

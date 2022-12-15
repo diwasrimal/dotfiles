@@ -2,7 +2,7 @@
 xmodmap ~/.Xmodmap &
 
 # Start Network Manager
-NetworkManager &
+# NetworkManager &
 
 Thunar --daemon &
 

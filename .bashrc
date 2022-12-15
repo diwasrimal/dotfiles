@@ -23,6 +23,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias g='. goto-bookmarked-dirs'   # cd into a directory from bookmarked directories
+alias o='xdg-open "$(ls -A | fzf)"'
 alias gop='. goto-bookmarked-dirs; $EDITOR .'   # go and open a bookmarked directory
 
 alias dunstconf="$EDITOR $HOME/.config/dunst/dunstrc"
@@ -62,17 +63,6 @@ alias v='xclip -o -selection clipboard'
 
 # Programming shorcuts
 alias vba=". venv/bin/activate"
-
-# Use colors for less, man, etc.
-export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
-export LESS_TERMCAP_md=$'\e[1;33m'     # begin blink
-export LESS_TERMCAP_so=$'\e[01;44;37m' # begin reverse video
-export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
-export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
-export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
-export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
-export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
-
 
 # Use vi bindings
 set -o vi

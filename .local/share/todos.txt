@@ -1,11 +1,12 @@
 # Pending commits:
 
-[ ] /some/repository    : commit message
+[ ] Dots : commit & push
+[ ] extras : update repository
 
 
 # TODO:
 
-[ ] /some/path      : Task
+[x] /some/path      : Task
 
 # Icons
 📁
