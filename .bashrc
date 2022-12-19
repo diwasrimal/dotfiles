@@ -40,8 +40,7 @@ alias dotsignore="cd; dots status -s | grep '?' | sed 's/?? //; 1i\\\\' \
 
 # Pacman / yay
 alias pac='sudo pacman'
-alias pacs='pacman -Ss'
-alias yays='yay -Ss'
+alias mirrorupdate='sudo reflector --country India --fastest 5 --save /etc/pacman.d/mirrorlist'
 
 # ls
 alias ls='ls --color=auto'
@@ -75,16 +74,6 @@ bind -m vi-insert "\C-w.":backward-kill-word
 bind -m vi-insert "\C-p":previous-history
 bind -m vi-insert "\C-n":next-history
 
-
-# Use colors for less, man, etc.
-export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
-export LESS_TERMCAP_md=$'\e[1;34m'     # begin blink
-export LESS_TERMCAP_so=$'\e[01;46;30m' # begin reverse video
-export LESS_TERMCAP_us=$'\e[01;37m'    # begin underline
-export LESS_TERMCAP_me=$'\e[0m'        # reset bold/blink
-export LESS_TERMCAP_se=$'\e[0m'        # reset reverse video
-export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
-export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
 # Show a quote on startup
 if ! [ -f /tmp/bash-loaded ] && [ "$TERM" != "linux" ]; then
