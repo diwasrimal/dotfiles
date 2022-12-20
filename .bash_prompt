@@ -25,13 +25,14 @@ function set_bash_prompt () {
   # We do this first so we don't lose the return value of the last command.
   [ $? -eq 0 ] && end="${BGREEN}" || end="${BRED}" 
 
-  prefix="${BBLUE}[${BGREY}\u${RED}@${GREY}\h${BBLUE}] ${PINK}\W "
-  branch_name=$(git branch 2>/dev/null | grep '*' | sed 's/\* //')
+  prefix="${BBLUE}[${BGREY}\u${RED}@${GREY}\h${BBLUE}] "
+  dir="${PINK}\W "
+  branch_name=$(git branch 2> /dev/null | sed '/^[^*]/d; s/* \(.*\)/(\1)/')
 
-  [ -n "$VIRTUAL_ENV" ] && virt_env="${YELLOW} "
-  [ -n "$branch_name" ] && branch="${WHITE} ${YELLOW}($branch_name) "
+  [ -n "$VIRTUAL_ENV" ] && virt_env="${YELLOW} " || virt_env=""
+  [ -n "$branch_name" ] && branch="${WHITE} ${YELLOW}$branch_name " || branch=""
 
-  PS1="${virt_env}${prefix}${branch}${end} ${WHITE}"
+  PS1="${virt_env}${prefix}${dir}${branch}${end} ${WHITE}"
 }
 
 # Tell bash to execute this function just before displaying its prompt.
