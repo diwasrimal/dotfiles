@@ -1,4 +1,3 @@
 #!/bin/bash
 
 $TERMINAL -e nvim ~/.local/share/todos.txt &
-echo "hello"
