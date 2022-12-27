@@ -10,7 +10,7 @@ Thunar --daemon &
 nvim --headless &
 
 # MPD daemon start (if no other user instance exists)
-[ ! -s ~/.config/mpd/pid ] && mpd &
+[ ! -s ~/.cache/mpd/pid ] && mpd &
 
 dunst &
 picom &

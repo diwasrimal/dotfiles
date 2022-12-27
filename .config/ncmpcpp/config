@@ -1,11 +1,12 @@
 # Needed for tag editor and file operations to work.                            
-mpd_music_dir = ~/mus/
+# mpd_music_dir = "~/mus"
 
 visualizer_data_source = "/tmp/mpd.fifo"
 visualizer_output_name = "my_fifo"
 visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
 visualizer_look = "+|"
+
 # visualizer_color = 43, 84, 119, 155, 185, 215, 209, 203, 197, 161 
 # song_list_format = {%a - }{%t}|{$8%f$9}$R{$3(%l)$9}
 # song_status_format = {{%a{ "%b"{ (%y)}} - }{%t}}|{%f}

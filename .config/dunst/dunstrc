@@ -15,7 +15,7 @@ horizontal_padding = 15
 frame_width = 2
 sort = no
 idle_threshold = 120
-font = Fira Code Nerd Font Bold 10
+font = JetBrainsMono Nerd Font Bold 10
 markup = full
 format = %s\n%b
 alignment = left
@@ -41,19 +41,19 @@ class = Dunst
 # context = ctrl+shift+period
 
 [urgency_low]
-frame_color = "#EBA0AC"
-background = "#282C33"
-foreground = "#D8D8D8"
+frame_color = "#B48EAD"
+background = "#292B38"
+foreground = "#D2E9C7"
 timeout = 2
 
 [urgency_normal]
-frame_color = "#EBA0AC"
-foreground = "#D8D8D8"
-background = "#282C33"
+frame_color = "#B48EAD"
+background = "#292B38"
+foreground = "#D2E9C7"
 timeout = 4
 
 [urgency_critical]
-frame_color = "#E06B74"
-background = "#282C33"
-foreground = "#E06B74"
+frame_color = "#BF616A"
+background = "#292B38"
+foreground = "#BF616A"
 timeout = 8

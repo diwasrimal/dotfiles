@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Download the latest torrent (requires aria2c)
+# New terminal window with "torrent" classname is opened,
+# Which is sent to tag 9 by dwm.
+function download_torrent () {
+  cd "${XDG_VIDEOS_DIR:-$HOME/Videos}"
+  notify-send -i $HOME/.config/icons/torrent.png "Downloading: $1" 
+  $TERMINAL --hold --class "torrent" -e aria2c "$1"
+}
+
+# Quickly download torrent if given as an argument
+[ -n "$1" ] && download_torrent "$1" && exit
+
+storage=${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
+file=$(ls -t "$storage"/*.torrent | sed '1q')
+
+download_torrent "$file"
