@@ -29,6 +29,7 @@ alias gop='. goto-bookmarked-dirs; $EDITOR .'   # go and open a bookmarked direc
 alias dunstconf="$EDITOR $HOME/.config/dunst/dunstrc"
 alias alaconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
 alias bashconf="$EDITOR $HOME/.bashrc"
+alias tmuxconf="$EDITOR $HOME/.config/tmux/tmux.conf"
 alias s='startx'
 alias nv='nvim'
 alias vn='viewnior'

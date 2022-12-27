@@ -22,8 +22,8 @@ BYELLOW='\[\e[1;33m\]'
 
 function set_bash_prompt () {
 
-  # We do this first so we don't lose the return value of the last command.
-  [ $? -eq 0 ] && end="${BGREEN}" || end="${BRED}" 
+  # We do this first so we don't lose the return value of the last command. 
+  [ $? -eq 0 ] && end="${BGREEN}" || end="${BRED}" 
 
   prefix="${BBLUE}[${BGREY}\u${RED}@${GREY}\h${BBLUE}] "
   dir="${PINK}\W "
