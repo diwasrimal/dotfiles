@@ -27,7 +27,7 @@ XF86AudioMute
 
 # Music controls
 XF86Audio{Play,Prev,Next}
-  $HOME/.local/bin/handlemusic {toggle,prev,next}
+  mpc {toggle,prev,next}; $HOME/.local/bin/songinfo
 
 # Toggle microphone
 super + XF86AudioMute

@@ -1,3 +1,5 @@
+# Sample binding config in /usr/share/doc/ncmpcpp/config
+
 # the t key isn't used and it's easier to press than /, so lets use it
 def_key "t"
     find

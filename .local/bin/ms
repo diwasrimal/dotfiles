@@ -5,3 +5,5 @@
 selected="$(mpc ls | dmenu -i -l 20 | cut -f1 -d\.)"
 
 [ -n "$selected" ] && mpc searchplay "$selected"
+
+songinfo
