@@ -13,6 +13,10 @@ function download_torrent () {
 [ -n "$1" ] && download_torrent "$1" && exit
 
 storage=${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
-file=$(ls -t "$storage"/*.torrent | sed '1q')
+file=$(ls -t "$storage"/*.torrent 2>/dev/null | sed '1q')
 
-download_torrent "$file"
+if [ -n "$file" ]; then
+  download_torrent "$file"
+else
+  notify-send -i $HOME/.config/icons/warn.png "No torrents found!"
+fi

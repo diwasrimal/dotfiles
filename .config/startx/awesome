@@ -1,0 +1,28 @@
+# Map right Alt key as super
+xmodmap ~/.Xmodmap &
+
+# Start Network Manager
+# NetworkManager &
+
+Thunar --daemon &
+
+# Neovim headless mode (faster startup)
+nvim --headless &
+
+# MPD daemon start (if no other user instance exists)
+[ ! -s ~/.cache/mpd/pid ] && mpd &
+
+dunst &
+picom &
+sxhkd &
+
+xset r rate 200 30 &
+xset -b 
+
+# Restore previous wallpaper
+# nitrogen --restore 
+
+# exec dwmblocks &
+# exec dwm
+
+exec awesome
