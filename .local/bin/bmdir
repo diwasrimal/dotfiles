@@ -23,13 +23,13 @@ exclude_flag=$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
   echo "Usage: 
       bmdir -c : Bookmark current directory
-      bmdir -r : Bookmark all child directories recursively
+      bmdir -r : Bookmark all child directories (depth 1)
       bmdir -s : Show bookmark status of current directory
       bmdir -e : Open bookmarks file"
 
-# Bookmark child dirs recursively
+# Bookmark all child directories (having depth 1)
 elif [ "$1" = "-r" ]; then
-  dirs="$(find -type d \( $exclude_flag \) -prune -o -type d -print | 
+  dirs="$(find -maxdepth 1 -type d \( $exclude_flag \) -prune -o -type d -print | 
     sed "/^\.$/d; s,\.,$wd,")"
   [ -z "$dirs" ] && printf "${red}No child directories!${white}\n" && exit
 
@@ -46,7 +46,7 @@ elif [ "$1" = "-c" ]; then
 
 # Show bookmark status of current dir
 elif [ "$1" = "-s" ]; then
-  if grep -q "$wd" "$bmfile"; then
+  if grep -x -q "$wd" "$bmfile"; then
     printf "${green}Bookmarked!${white}\n"
   else
     printf "${red}Not in bookmarks!${white}\n"

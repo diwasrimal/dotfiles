@@ -4,7 +4,7 @@
 # New terminal window with "torrent" classname is opened,
 # Which is sent to tag 9 by dwm.
 function download_torrent () {
-  cd "${XDG_VIDEOS_DIR:-$HOME/Videos}"
+  cd "${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
   notify-send -i $HOME/.config/icons/torrent.png "Downloading: $1" 
   $TERMINAL --hold --class "torrent" -e aria2c "$1"
 }
@@ -13,6 +13,10 @@ function download_torrent () {
 [ -n "$1" ] && download_torrent "$1" && exit
 
 storage=${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
-file=$(ls -t "$storage"/*.torrent | sed '1q')
+file=$(ls -t "$storage"/*.torrent 2>/dev/null | sed '1q')
 
-download_torrent "$file"
+if [ -n "$file" ]; then
+  download_torrent "$file"
+else
+  notify-send -i $HOME/.config/icons/warn.png "No torrents found!"
+fi
