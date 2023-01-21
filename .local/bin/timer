@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Start a countdown timer.
+
+[ -n "$1" ] && seconds=$1 || seconds=3
+
+# Countdown up to 2 seconds
+for i in $(seq $seconds -1 2); do
+  notify-send -i $HOME/.config/icons/timer.png -r 21000 "${i} seconds remaining..."
+  sleep 0.97s;
+done
+
+# Last second
+notify-send -i $HOME/.config/icons/timer.png --expire-time 950 -r 21000 "1 second remaining..."
+sleep 0.97s
