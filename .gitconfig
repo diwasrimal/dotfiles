@@ -1,6 +1,7 @@
 [alias]
   b = branch
   d = diff
+  ds = diff --staged
   au = add -u
   cl = clone --depth 1
   cm = commit -m 
@@ -10,6 +11,7 @@
   lsf = ls-files
   lst = ls-tree -r --name-only
   rmc = rm --cached
+  res = restore --staged
   undo = reset --soft HEAD~1
   amend = commit --amend
   recon = rebase --continue
