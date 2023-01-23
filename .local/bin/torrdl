@@ -1,22 +1,26 @@
 #!/bin/bash
 
-# Download the latest torrent (requires aria2c)
-# New terminal window with "torrent" classname is opened,
-# Which is sent to tag 9 by dwm.
+# Automated torrent downloader (requires 'aria2c')
+
+storage=${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
+dest=${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
+
+# Opens a new terminal with classname "torrent" at tag 9 (dwm)
 function download_torrent () {
-  cd "${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
+  file=$(aria2c --show-files "$1" | grep 'Name' | awk '{print $2}')
   notify-send -i $HOME/.config/icons/torrent.png "Downloading: $1" 
-  $TERMINAL --hold --class "torrent" -e aria2c "$1"
+  echo -e "[$(date "+%F %I:%M %p")] $1: $dest/$file" >> $HOME/.cache/torrdl-history
+  $TERMINAL --hold --class "torrent" -e aria2c --dir="$dest" "$1"
 }
 
 # Quickly download torrent if given as an argument
 [ -n "$1" ] && download_torrent "$1" && exit
 
-storage=${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
-file=$(ls -t "$storage"/*.torrent 2>/dev/null | sed '1q')
+# Select the latest torrent file from $storage
+torrent=$(ls -t "$storage"/*.torrent 2>/dev/null | sed '1q')
 
-if [ -n "$file" ]; then
-  download_torrent "$file"
+if [ -n "$torrent" ]; then
+  download_torrent "$torrent" &
 else
   notify-send -i $HOME/.config/icons/warn.png "No torrents found!"
 fi
