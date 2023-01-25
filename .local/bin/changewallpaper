@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 [ -z "$1" ] && echo "Specify a wallpaper" && exit
 wallpaper="$1" 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Download songs to XDG_MUSIC_DIR
 # https://github.com/diwasrimal/Songs
@@ -8,7 +8,9 @@ project="$HOME/code/Songs"
 echo "Activating env from $project.."
 cd $project
 . venv/bin/activate
-python download.py -q "$@" <<< ""
-cd - 1>/dev/null
+python download.py -q "$@" << EOF
+
+EOF
+cd - >/dev/null
 deactivate
 

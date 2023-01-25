@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # https://wiki.archlinux.org/title/Ncmpcpp#Notification_on_song_change
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 file=$HOME/.local/share/quotes
 
@@ -7,10 +7,6 @@ quote="$(echo "$line" | sed 's/\t.*//')"
 author="$(echo "$line" | sed 's/.*\t//')"
 
 echo
-echo -e "\e[1;37m📘 $quote"
-echo -e "\e[1;33m✍️  $author"
+printf "\033[1;37m📘 $quote\n"
+printf "\033[1;33m✍️  $author\n"
 echo
-
-# echo
-# shuf -n1 $file | sed 's/\t/\n - /' | xargs -I{} echo -e "\e[1;34m{}\e[m"
-# echo

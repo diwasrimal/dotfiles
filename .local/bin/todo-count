@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 file=$HOME/.local/share/todos.txt 
 ! [ -f $file ] && echo "No todo file!" 

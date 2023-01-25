@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Search files and send them to 0x0.st
 # Directories to search files from are stored in 

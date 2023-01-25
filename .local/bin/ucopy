@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Copy unicode characters from a file
 

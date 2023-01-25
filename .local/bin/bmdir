@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Boomark current directory or all child directories
 # Bookmarks stored in ~/.local/share/bookmarked-dirs.txt 

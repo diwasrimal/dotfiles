@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 newcolor="$1"
 [ -z "$newcolor" ] && echo "Usage: changeicons new_color" && exit

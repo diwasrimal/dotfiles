@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Make colorschemes from a wallpaper with pywal
 

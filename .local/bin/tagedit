@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 . $HOME/code/Songs/venv/bin/activate
 cd ${XDG_MUSIC_DIR:-$HOME/Music}
