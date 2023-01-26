@@ -1,6 +1,4 @@
-#
 # ~/.bashrc
-#
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -19,63 +17,9 @@ fi
 # Options for cd
 shopt -s cdspell
 complete -d cd
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias g='. goto-bookmarked-dirs'   # cd into a directory from bookmarked directories
-alias o='xdg-open "$(ls -A | fzf)"'
-alias gop='. goto-bookmarked-dirs; $EDITOR .'   # go and open a bookmarked directory
 
-alias dunstconf="$EDITOR $HOME/.config/dunst/dunstrc"
-alias tmuxconf="$EDITOR $HOME/.config/tmux/tmux.conf"
-alias bashconf="$EDITOR $HOME/.bashrc"
-alias hkdconf="$EDITOR $HOME/.config/sxhkd/sxhkdrc"
-alias alaconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
-
-alias s='startx'
-alias nv='nvim'
-alias smi='sudo make install'
-alias smci='sudo make clean install'
-alias hst="history | cut -c 8- | sort | uniq | fzf | tr -d '\n' | xclip -sel c"
-alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-alias dotsignore="cd; dots status -s | grep '?' | sed 's/?? //; 1i\\\\' \
-                  >> ~/.gitignore; nvim ~/.gitignore; cd - >/dev/null 2>&1"
-
-# Media
-alias vn='viewnior'
-alias recop="mpv $($HOME/.local/bin/newrec)"
-alias ssop="viewnior $($HOME/.local/bin/newss)"
-
-# yt-dlp
-alias ytp="yt-dlp -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"   # Download playlist
-
-# Pacman / yay
-alias pacs='pacman -Ss'
-alias yays='yay -Ss'
-alias mirrorupdate='sudo reflector --country India --latest 5 --fastest 5 \
-  --download-timeout 30 --save /etc/pacman.d/mirrorlist'
-
-
-# ls
-alias ls='ls --color=auto'
-# alias l='ls -lh'
-# alias ll='ls -lah'
-# alias la='ls -A'
-# alias lm='ls -m'
-# alias lr='ls -R'
-# alias ld='ls -l --group-directories-first'
-
-# Colorize outputs
-alias grep='grep --color=auto'
-alias diff='diff --color=auto'
-alias ip='ip -color=auto'
-
-# copy pase
-alias c='xclip -selection clipboard'
-alias v='xclip -o -selection clipboard'
-
-# Programming shorcuts
-alias vba=". venv/bin/activate"
+# Load aliases
+. ~/.config/shell/aliasrc
 
 # Use vi bindings
 set -o vi

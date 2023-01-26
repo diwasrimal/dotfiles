@@ -1,0 +1,50 @@
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias g=". goto-bookmarked-dirs"
+alias o='xdg-open "$(ls -A | fzf)" >/dev/null 2>&1'
+alias gop='g && o'  # go and open a file
+
+# Configurations
+alias dunstconf="$EDITOR $HOME/.config/dunst/dunstrc"
+alias tmuxconf="$EDITOR $HOME/.config/tmux/tmux.conf"
+alias bashconf="$EDITOR $HOME/.bashrc"
+alias hkdconf="$EDITOR $HOME/.config/sxhkd/sxhkdrc"
+alias alaconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
+
+# Media
+alias vn='viewnior'
+alias recop="mpv $($HOME/.local/bin/newrec)"
+alias ssop="viewnior $($HOME/.local/bin/newss)"
+alias ytp="yt-dlp -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"   # Download playlist
+
+# Package management
+alias pacs='pacman -Ss'
+alias yays='yay -Ss'
+alias mirrorupdate='sudo reflector --country India --latest 5 --fastest 5 \
+  --save /etc/pacman.d/mirrorlist'
+
+# Colorization
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias ip='ip -color=auto'
+
+# Copy/paste
+alias c='xclip -selection clipboard'
+alias v='xclip -o -selection clipboard'
+
+# Programming shortcuts
+alias smi='sudo make install'
+alias smci='sudo make clean install'
+alias vba=". venv/bin/activate"
+
+alias hst="history | cut -c 8- | sort | uniq | fzf | tr -d '\n' | xclip -sel c"
+alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dotsignore="cd; dots status -s | grep '?' | sed 's/?? //; 1i\\\\' \
+                  >> ~/.gitignore; nvim ~/.gitignore; cd - >/dev/null 2>&1"
+
+alias s='startx'
+alias nv='nvim'
+alias dash='dash -E'
+
