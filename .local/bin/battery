@@ -1,45 +1,39 @@
 #!/bin/sh
 
-battery="/sys/class/power_supply/BAT0"
-status="$(cat "$battery/status")"
-capacity="$(cat "$battery/capacity")"
+# Show your battery charge, and notify when low.
 
-# Get the low battery status from file ~/.cache/battery-low-status
-lowinfo_file="$HOME/.cache/battery-low-status"
-[ -e "$lowinfo_file" ] || touch "$lowinfo_file"
+status=$(cat /sys/class/power_supply/BAT0/status)
+charge=$(cat /sys/class/power_supply/BAT0/capacity)
+[ $charge -gt 100 ] && charge=100
 
-# Send a notification if battery is low (low status stored in ~/.cache/battery-low-status)
-notify_low () {
+# Set battery icon
+icon=' ' 
+[ $charge -gt 15 ] && icon=' '
+[ $charge -gt 40 ] && icon=' ' 
+[ $charge -gt 60 ] && icon=' '
+[ $charge -gt 90 ] && icon=' '
 
-  # Battery isn't much but is charging (don't notify)
-  [ "$status" = "Charging" ] && return
+# Send notifications when battery is low.
+low=/tmp/battery-low
+critical=/tmp/battery-critical
+noti_icons="$HOME/.config/icons"
 
-  # Battery critically low
-  if [ "$capacity" -le 10 ] && ! grep -q critically-low "$lowinfo_file"; then
-    notify-send -i "$HOME/.config/icons/default/critical-battery.png" -u critical "Battery critically low!" 
-    echo critically-low >"$lowinfo_file"
+if [ $status = "Charging" ]; then
+  icon=" $icon"
+  [ -f $low ] && rm $low
+  [ -f $critical ] && rm $critical
 
-  # Battery low but not critical
-  elif [ "$capacity" -le 20 ] && ! grep -q low "$lowinfo_file"; then
-    notify-send -i "$HOME/.config/icons/low-battery.png" -t 5500 "Battery low!"
-    echo low >"$lowinfo_file"
+else
+  if [ $charge -le 10 ] && [ ! -f $critical ]; then
+    touch $critical $low
+    notify-send -i "$noti_icons/default/critical-battery.png" \
+      -u critical "Battery critically low!" 
+
+  elif [ $charge -le 25 ] && [ ! -f $low ]; then
+    touch $low
+    notify-send -i "$noti_icons/low-battery.png" \
+      -t 5500 "Battery low!"
   fi
-}
-
-[ "$status" = "Charging" ] && charging_icon=" " || charging_icon=""
-[ "$capacity" -gt 100 ] && capacity=100
-
-if   [ "$capacity" -lt 15 ]; then capacity_icon='  ' 
-elif [ "$capacity" -lt 40 ]; then capacity_icon='  '
-elif [ "$capacity" -lt 60 ]; then capacity_icon='  ' 
-elif [ "$capacity" -lt 90 ]; then capacity_icon='  '
-else capacity_icon='  ' 
 fi
-                                         
-[ "$capacity" -le 20 ] && notify_low
 
-# Reset low battery information in these cases
-([ "$capacity" -gt 20 ] || [ "$status" = "Charging" ]) && [ -s "$lowinfo_file" ] && >"$lowinfo_file"
-
-# Report low battery, show warning color on dwm statusbar :- https://dwm.suckless.org/patches/statuscolors/
-printf "%s%s%d%%\n" "$charging_icon" "$capacity_icon" "$capacity"
+echo "$icon $charge%"
