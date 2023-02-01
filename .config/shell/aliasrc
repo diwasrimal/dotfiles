@@ -3,9 +3,15 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias g=". goto-bookmarked-dirs"
 alias o='xdg-open "$(ls -A | fzf)" >/dev/null 2>&1'
-alias gop='g && o'  # go and open a file
+alias gao='g && o'
+alias dl="cd ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
+alias mus="cd ${XDG_MUSIC_DIR:-$HOME/Music}"
+alias vids="cd ${XDG_VIDS_DIR:-$HOME/Videos}"
+alias pics="cd ${XDG_PICTURES_DIR:-$HOME/Pictures}"
+alias docs="cd ${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
 
 # Configurations
+alias aliasconf="$EDITOR $HOME/.config/shell/aliasrc"
 alias dunstconf="$EDITOR $HOME/.config/dunst/dunstrc"
 alias tmuxconf="$EDITOR $HOME/.config/tmux/tmux.conf"
 alias bashconf="$EDITOR $HOME/.bashrc"
@@ -45,6 +51,7 @@ alias dotsignore="cd; dots status -s | grep '?' | sed 's/?? //; 1i\\\\' \
                   >> ~/.gitignore; nvim ~/.gitignore; cd - >/dev/null 2>&1"
 
 alias s='startx'
+alias xephs='startx -- /usr/bin/Xephyr'
 alias nv='nvim'
 alias dash='dash -E'
 
