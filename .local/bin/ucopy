@@ -15,4 +15,4 @@ char=$(cut -d ';' -f1 "$file" | dmenu -p "Select:" -i -l 30 | sed "s/ .*//")
 echo -n $char | xclip 
 xdotool click --window $(xdotool getactivewindow) 2
 echo -n $char | xclip -sel c
-notify-send -i ~/.config/icons/clipboard.png "'$char' in clipboard." 
+notify-send -i ~/.icons/notification/clipboard.png "'$char' in clipboard." 

@@ -3,7 +3,7 @@
 # Add unicode characters to a file
 
 abort () {
-  notify-send -i ~/.config/icons/warn.png "Aborted unicode addition." &
+  notify-send -i ~/.icons/notification/warn.png "Aborted unicode addition." &
   exit
 }
 
@@ -20,6 +20,6 @@ desc="$(dmenu -p "Description for '$char':" < /dev/null)"
 
 # Dump the character to selected unicode file type
 echo "$char  $desc" >> "$unicode_dir/$chosen"
-notify-send -i ~/.config/icons/check.png "Added \"$char $desc\" in $chosen" &
+notify-send -i ~/.icons/notification/check.png "Added \"$char $desc\" in $chosen" &
 
 

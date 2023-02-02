@@ -26,7 +26,7 @@ cd - >/dev/null 2>&1
 # Change icon colors used in notifications 
 # Uses 'convert' from imagemagick
 newcolor="$(sed -n '/sel_bg/p' $HOME/.cache/wal/colors-wal-dwm.h | sed -e 's/.*"\(.*\)".*/\1/')"
-icons_dir=$HOME/.config/icons
+icons_dir=$HOME/.icons/notification
 tempdir=$(mktemp -d)
 
 [ -z $newcolor ] && echo "Cannot find newicon color" && exit

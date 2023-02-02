@@ -9,8 +9,8 @@ STATE=$(xinput list-props $ID | grep 'Device Enabled' | awk '{print $4}')
 if [ $STATE -eq 1 ]
 then
     xinput disable $ID
-    notify-send -a 'Touchpad' 'Touchpad Disabled' -i ~/.config/icons/touchpad-disabled.png
+    notify-send -a 'Touchpad' 'Touchpad Disabled' -i ~/.icons/notification/touchpad-disabled.png
 else
     xinput enable $ID
-    notify-send -a 'Touchpad' 'Touchpad Enabled' -i ~/.config/icons/touchpad-enabled.png 
+    notify-send -a 'Touchpad' 'Touchpad Enabled' -i ~/.icons/notification/touchpad-enabled.png 
 fi

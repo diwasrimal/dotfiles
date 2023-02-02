@@ -3,7 +3,7 @@
 newcolor="$1"
 [ -z "$newcolor" ] && echo "Usage: changeicons new_color" && exit
 
-icons_dir=$HOME/.config/icons
+icons_dir=$HOME/.icons/notification
 tempdir=$(mktemp -d)
 
 echo "Changing icons at $icons_dir..."

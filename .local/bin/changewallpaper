@@ -15,7 +15,7 @@ sudo make clean install --directory "$HOME/.local/src/dwm"
 echo "Changing notificaton icons.."
 newcolor=$(sed -n '/sel_bg/p' /home/lufy/.cache/wal/colors-wal-dwm.h | sed '1q' | sed 's/.*"\(.*\)".*/\1/')
 echo $new
-icons_dir=$HOME/.config/icons
+icons_dir=$HOME/.icons/notification
 tempdir=$(mktemp -d)
 
 [ -z $newcolor ] && echo "Cannot find newicon color" && exit

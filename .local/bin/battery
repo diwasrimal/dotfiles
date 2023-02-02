@@ -16,7 +16,7 @@ icon=' '
 # Send notifications when battery is low.
 low=/tmp/battery-low
 critical=/tmp/battery-critical
-noti_icons="$HOME/.config/icons"
+noti_icons="$HOME/.icons/notification"
 
 if [ $status = "Charging" ]; then
   icon=" $icon"

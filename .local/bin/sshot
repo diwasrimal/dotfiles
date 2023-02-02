@@ -32,5 +32,5 @@ case "$1" in
 esac
 
 if [ -n "$(xclip -o -selection clipboard | sed 1q)" ]; then
-  notify-send -i ~/.config/icons/image.png "Image copied to clipboard"
+  notify-send -i ~/.icons/notification/image.png "Image copied to clipboard"
 fi

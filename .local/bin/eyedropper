@@ -3,5 +3,5 @@
 color="$(gpick -so)"
 [ -z "$color" ] && exit
 echo -n $color | xclip -selection clipboard
-notify-send -i ~/.config/icons/eyedropper.png "$color copied to clipboard."
+notify-send -i ~/.icons/notification/eyedropper.png "$color copied to clipboard."
 

@@ -3,10 +3,11 @@
 # Toggle your mirophone
 
 output="$(amixer set Capture toggle)"
+icons_dir=$HOME/.icons/notification
 
 if echo "$output" | grep '\[on\]'; then
-  notify-send -i "~/.config/icons/mic-enabled.png" "Microphone enabled!"
+  notify-send -i "$icons_dir/mic-enabled.png" "Microphone enabled!"
 else
-  notify-send -i "~/.config/icons/mic-disabled.png" "Microphone disabled!"
+  notify-send -i "$icons_dir/mic-disabled.png" "Microphone disabled!"
 fi
 
