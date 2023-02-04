@@ -1,14 +1,12 @@
 #!/bin/sh
 
-[ $(pamixer --get-mute) = true ] && echo '婢' && exit
+[ $(pamixer --get-mute) = "true" ] && echo '婢' && exit
 
-vol="$(pamixer --get-volume)"
+vol=$(pamixer --get-volume)
 
-if   [ $vol -gt 70 ]; then icon=''
-elif [ $vol -gt 50 ]; then icon='墳'
-elif [ $vol -gt 20 ]; then icon=''
-elif [ $vol -gt  0 ]; then icon=''
-else icon='婢'
-fi
+icon=''
+[ $vol -gt 20 ] && icon=''
+[ $vol -gt 50 ] && icon='墳'
+[ $vol -gt 80 ] && icon=''
 
 echo "$icon $vol%"
