@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Music search and play
+# Play a song from your playlist.
 
-selected="$(mpc ls | dmenu -i -l 20 | cut -f1 -d\.)"
+selected=$(mpc playlist | dmenu -i -l 20 | sed 's/.* - //')
 
 [ -n "$selected" ] && mpc searchplay "$selected"
 
