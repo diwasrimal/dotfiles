@@ -20,8 +20,6 @@ alias alaconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
 
 # Media
 alias vn='viewnior'
-alias recop="mpv $($HOME/.local/bin/newrec)"
-alias ssop="viewnior $($HOME/.local/bin/newss)"
 alias ytp="yt-dlp -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"   # Download playlist
 alias cam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed'
 
