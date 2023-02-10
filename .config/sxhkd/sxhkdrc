@@ -9,7 +9,8 @@ super + r
 
 # Brightness control
 XF86MonBrightness{Up,Down}  
-  $HOME/.local/bin/brightness {+,-}
+  notify-send -r 27658 -i $HOME/.icons/notification/brightness.png \
+    "Brightness: $(brightnessctl s 80{+,-} | grep '%' | sed 's/.*(\(.*\))/\1/')"
 
 # Screen capture
 Print
@@ -34,8 +35,10 @@ super + XF86AudioMute
   $HOME/.local/bin/mictoggle
 
 # Select unicode characters
-super + e; {e,i,m}
-  $HOME/.local/bin/unicode-copy {emoji,icons,math_symbols}
+super + e; {e,i,m,u}
+  $HOME/.local/bin/ucopy {emoji,icons,math_symbols,unicode}
+super + e; l
+  echo -n "😂" | xclip -sel c
 
 # Toggle touchpad
 XF86TouchpadToggle
