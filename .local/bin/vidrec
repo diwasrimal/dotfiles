@@ -1,14 +1,24 @@
 #!/bin/sh
 
-
 dest=$HOME/vids/recs
 [ -d $dest ] || mkdir -p $dest 
 
-filename="$dest/$(date '+%F_%H-%M-%S').$1"
+filename="$dest/$(date '+%F_%H-%M-%S').mp4"
 
-if [ "$2" = "tty" ]; then
-  sudo ffmpeg -f alsa -i hw:0 -f fbdev -i /dev/fb0 "$filename"
+tty=$(printf "no\nyes" | fzf --prompt 'Record tty? ')
+[ -z "$tty" ] && exit 1
+
+if [ "$tty" = "yes" ]; then
+	sudo ffmpeg -f alsa -i hw:0 -f fbdev -i /dev/fb0 "$filename"
 else
-  res="$(xrandr | grep '*' | awk '{ print $1 }')"
-  ffmpeg -y -f x11grab -s $res -i :0.0 -f alsa -i default  "$filename"
+	mon=$(xrandr | grep ' connected' | awk '{print $1}' | fzf --prompt "Monitor: ")
+	[ -z "$mon" ] && exit 1
+
+	pos=$(xrandr | grep "$mon connected" | awk '{ sub(/primary /, ""); print $3 }')
+	res=$(echo $pos | sed 's/+.*//')					  # Resolution
+	off=$(echo $pos | sed 's/.*+\(.*\)+\(.*\)/\1,\2/')    # Offset
+	ffmpeg -y -f x11grab -s $res -i ${DISPLAY}.0+$off -f alsa -i default "$filename"
 fi
+
+
+
