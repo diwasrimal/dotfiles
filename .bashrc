@@ -31,3 +31,4 @@ bind -m vi-insert "\C-e.":end-of-line
 bind -m vi-insert "\C-w.":backward-kill-word
 bind -m vi-insert "\C-p":previous-history
 bind -m vi-insert "\C-n":next-history
+bind -m vi-insert "\C-k":insert-last-argument
