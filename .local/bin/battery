@@ -18,7 +18,7 @@ low=/tmp/battery-low
 critical=/tmp/battery-critical
 noti_icons="$HOME/.icons/notification"
 
-if [ $status = "Charging" ]; then
+if [ "$status" = "Charging" ]; then
   icon=" $icon"
   [ -f $low ] && rm $low
   [ -f $critical ] && rm $critical

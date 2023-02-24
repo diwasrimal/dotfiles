@@ -21,7 +21,7 @@ storage="$HOME/.local/share/file-searchable-dirs.txt"
 dirs="$(cat "$storage" | tr '\n' ' ')"
 
 # Exclude unwanted directories
-dirs_exclude="venv .git node_modules"
+dirs_exclude="venv .git .github node_modules"
 exclude_flag="$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')"
 
 # Choose a file through dmenu
@@ -30,5 +30,3 @@ file="$(find $dirs -type d \( $exclude_flag \) \
       | dmenu -p " " -i -l 25)"
 
 [ -n "$file" ] && send "$file"
-
-
