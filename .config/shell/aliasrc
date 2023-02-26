@@ -4,6 +4,8 @@ alias ...="cd ../.."
 alias g=". goto-bookmarked-dirs"
 alias o='xdg-open "$(ls -A | fzf)" >/dev/null 2>&1'
 alias gao='g && o'
+alias gat='g && tmux'
+alias ywd='echo -n $PWD | xclip -selection clipboard'
 alias dl="cd ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
 alias mus="cd ${XDG_MUSIC_DIR:-$HOME/Music}"
 alias vids="cd ${XDG_VIDEOS_DIR:-$HOME/Videos}"
@@ -17,6 +19,7 @@ alias tmuxconf="$EDITOR $HOME/.config/tmux/tmux.conf"
 alias bashconf="$EDITOR $HOME/.bashrc"
 alias hkdconf="$EDITOR $HOME/.config/sxhkd/sxhkdrc"
 alias alaconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
+alias wmconf="cd $HOME/.local/src/dwm && $EDITOR config.h"
 
 # Media
 alias vn='viewnior'
@@ -53,4 +56,3 @@ alias s='startx'
 alias xephs='startx -- /usr/bin/Xephyr'
 alias nv='nvim'
 alias dash='dash -E'
-
