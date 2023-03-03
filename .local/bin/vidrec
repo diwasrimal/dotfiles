@@ -3,7 +3,7 @@
 dest=$HOME/vids/recs
 [ -d $dest ] || mkdir -p $dest 
 
-filename="$dest/$(date '+%F_%H-%M-%S').mp4"
+filename="$dest/$(date '+%F_%H-%M-%S').mkv"
 
 tty=$(printf "no\nyes" | fzf --prompt 'Record tty? ')
 [ -z "$tty" ] && exit 1
