@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# Open newest recording with mpv
-
-mpv "$(newrec)"

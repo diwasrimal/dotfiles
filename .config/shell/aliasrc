@@ -23,6 +23,10 @@ alias wmconf="cd $HOME/.local/src/dwm && $EDITOR config.h"
 
 # Media
 alias vn='viewnior'
+alias newss='ls -t $HOME/pics/ss | head -1 | xargs -I{} echo -n "$HOME/pics/ss/{}"'
+alias newrec='ls -t $HOME/vids/recs | head -1 | xargs -I{} echo -n "$HOME/vids/recs/{}"'
+alias ssop='viewnior $(newss)'
+alias recop='mpv $(newrec)'
 alias ytp="yt-dlp -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"   # Download playlist
 alias cam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed'
 

@@ -1,6 +1,0 @@
-#!/bin/sh
-
-# newss : Print out your newest screenshot
-
-ssdir="$HOME/pics/ss"
-echo -n "$ssdir/"$(ls -t "$ssdir" | sed 1q)""
