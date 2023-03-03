@@ -1,21 +1,12 @@
-## Copyright (C) 2020-2022 Aditya Shakya <adi1090x@gmail.com>
-## Everyone is permitted to copy and distribute copies of this file under GNU-GPL3
-
-## Configuration for Alacritty, the GPU enhanced terminal emulator.
-## It's a very basic and simple config file, for full configuration...
-## See, /usr/share/doc/alacritty/example/alacritty.yml
-
-## Import files (Colors, Fonts, Etc)
-import:
-  - ~/.config/alacritty/colorschemes/Dracula.yaml
-  - ~/.config/alacritty/fonts.yml
-
-## Set environment variables
+# Set environment variables
 env:
   TERM: alacritty
   WINIT_X11_SCALE_FACTOR: '1.0'
 
-## Terminal window settings
+live_config_reload: true
+
+
+# Terminal window settings
 window:
   dimensions:
     columns: 82
@@ -29,30 +20,63 @@ window:
   startup_mode: Windowed
   dynamic_title: true
 
-## scrolling
+  # scrolling
   history: 10000
   multiplier: 3
 
-## Background opacity
+  # Background opacity
   opacity: 0.9
 
-## Cursor
+
+# Cursor
 cursor:
   style:
     shape: Block
     blinking: On
 
-  unfocused_hollow: false
-
-## Live config reload
-live_config_reload: true
+  unfocused_hollow: true
 
 key_bindings:
-  - { key: Back, mods: Control, chars: "\x17" }
+   - { key: Back, mods: Control, chars: "\x17" }
 
-## Shell
-#shell:
-#  program: /bin/zsh
-#  args:
-#    - --login
-# BEGIN ACE
+
+# Font
+font:
+  normal:
+    family: "JetBrainsMono Nerd Font"
+    style: Regular
+
+    family: "monospace"   # fallback
+    style: Regular
+
+  size: 10
+
+  offset:
+    y: -1
+
+
+# Dracula colorscheme
+colors:
+  primary:
+    background: "#282a36"
+    foreground: "#f8f8f2"
+
+  normal:
+    black:     "#000000"
+    red:       "#ff5555"
+    green:     "#50fa7b"
+    yellow:    "#f1fa8c"
+    blue:      "#bd93f9"
+    magenta:   "#ff79c6"
+    cyan:      "#8be9fd"
+    white:     "#bfbfbf"
+
+  bright:
+    black:     "#4d4d4d"
+    red:       "#ff6e67"
+    green:     "#5af78e"
+    yellow:    "#f4f99d"
+    blue:      "#caa9fa"
+    magenta:   "#ff92d0"
+    cyan:      "#9aedfe"
+    white:     "#e6e6e6"
