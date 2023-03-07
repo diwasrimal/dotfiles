@@ -36,11 +36,14 @@ alias yays='yay -Ss'
 alias mirrorupdate='sudo reflector --country India --latest 5 --fastest 5 \
   --save /etc/pacman.d/mirrorlist'
 
-# Colorization
 alias ls='ls --color=auto'
+alias ll='ls -lah'
+alias lsr='ls -t | head -1'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'
+alias df='df -h'
+alias free='free -h'
 
 # Copy/paste
 alias c='xclip -selection clipboard'
@@ -53,8 +56,8 @@ alias vba=". venv/bin/activate"
 
 alias hst="history | cut -c 8- | sort | uniq | fzf | tr -d '\n' | xclip -sel c"
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-alias dotsignore="cd; dots status -s | grep '?' | sed 's/?? //; 1i\\\\' \
-                  >> ~/.gitignore; ${EDITOR:-nano} ~/.gitignore; cd - >/dev/null 2>&1"
+alias dotsignore='cd; dots status -s | grep "?" | sed "s/?? //; 1i\\\\" \
+                  >> ~/.gitignore; ${EDITOR:-nano} ~/.gitignore; cd - >/dev/null 2>&1'
 
 alias s='startx'
 alias xephs='startx -- /usr/bin/Xephyr'
