@@ -33,13 +33,20 @@ elif [ "$1" = "-r" ]; then
     sed "/^\.$/d; s,\.,$wd,")"
   [ -z "$dirs" ] && printf "${red}No child directories!${white}\n" && exit
 
-  printf "$dirs\n\nBookmark these directories (y/n) ? "
+  printf "$dirs\n\nBookmark these directories (y/n) ? \n"
   read choice
-  if [ "$choice" = "y" ]; then 
-    echo "$dirs" >> "$bmfile" 
-    printf "${green}Bookmarked!${white}\n"
+  if [ "$choice" = "y" ]; then
+    dirArr=("$dirs")
+    for dir in $dirArr;
+      do
+      if grep -q "$dir" "$bmfile"; then
+        printf "$dir ${red} already bookmarked$ ${white} \n"
+      else
+      echo "$dir" >> "$bmfile"
+      printf "${white}$dir ${green} Bookmarked! ${white} \n"
+      fi
+    done
   fi
-
 # Bookmark current directory
 elif [ "$1" = "-c" ]; then
   echo "$wd" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
@@ -61,8 +68,8 @@ else
   exit 1
 fi
 
+
 # TODO: 
-# [ ] - Don't add duplicate bookmarks
 # [ ] - Don't mess comments while removng duplicates
 
 # sort "$bmfile" | uniq > "$bmfile"   # Duplicate gayo, comment ni udyo 
