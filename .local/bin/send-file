@@ -7,12 +7,13 @@
 # Send the chosen file
 send () {
   curl -F "file=@$1" https://0x0.st | xclip -sel c &&
-    notify-send -i $HOME/.icons/notification/link.png "Link copied to clipboard." &&
-    echo "$(xclip -o -sel c) - \"$1\"" >> $HOME/.cache/send-file-history
+    echo "$(xclip -o -sel c) - \"$1\"" >> $HOME/.cache/send-file-history &&
+    notify-send -i $HOME/.icons/notification/link.png "Link copied to clipboard."
+  exit
 }
 
 # Quickly send file if given as an argument
-[ -n "$1" ] && [ -f "$1" ] && send "$1" && exit
+[ -n "$1" ] && [ -f "$1" ] && send "$1"
 
 storage="$HOME/.local/share/file-searchable-dirs.txt"
 [ -e "$storage" ] || echo "$HOME" > "$storage"
