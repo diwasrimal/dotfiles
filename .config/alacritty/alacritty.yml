@@ -1,3 +1,6 @@
+import:
+  - ~/.config/alacritty/dracula.yml
+
 # Set environment variables
 env:
   TERM: alacritty
@@ -25,7 +28,8 @@ window:
   multiplier: 3
 
   # Background opacity
-  opacity: 0.9
+  opactiy: 1
+  # opacity: 0.9
 
 
 # Cursor
@@ -53,30 +57,3 @@ font:
 
   offset:
     y: -1
-
-
-# Dracula colorscheme
-colors:
-  primary:
-    background: "#282a36"
-    foreground: "#f8f8f2"
-
-  normal:
-    black:     "#000000"
-    red:       "#ff5555"
-    green:     "#50fa7b"
-    yellow:    "#f1fa8c"
-    blue:      "#bd93f9"
-    magenta:   "#ff79c6"
-    cyan:      "#8be9fd"
-    white:     "#bfbfbf"
-
-  bright:
-    black:     "#4d4d4d"
-    red:       "#ff6e67"
-    green:     "#5af78e"
-    yellow:    "#f4f99d"
-    blue:      "#caa9fa"
-    magenta:   "#ff92d0"
-    cyan:      "#9aedfe"
-    white:     "#e6e6e6"
