@@ -1,39 +1,28 @@
-
 #!/bin/bash
 
-# Colors
-  WHITE='\[\e[m\]'
-  BLACK='\[\e[30m\]'
- BBLACK='\[\e[1;30m\]'
-    RED='\[\e[31m\]'
-  GREEN='\[\e[32m\]'
- YELLOW='\[\e[33m\]'
-   BLUE='\[\e[34m\]'
-   PINK='\[\e[35m\]'
-   CYAN='\[\e[36m\]'
-   GREY='\[\e[37m\]'
-   BRED='\[\e[1;31m\]'
- BGREEN='\[\e[1;32m\]'
-BYELLOW='\[\e[1;33m\]'
-  BBLUE='\[\e[1;34m\]'
-  BCYAN='\[\e[1;36m\]'
-  BGREY='\[\e[1;37m\]'
-  BPINK='\[\e[1;35m\]'
- BWHITE='\[\e[1m\]'
+# Color codes
+res='\[\e[m\]'      # reset
+bol='\[\e[1m\]'     # bolds anything following
+bla='\[\e[30m\]'
+red='\[\e[31m\]'
+gre='\[\e[32m\]'
+yel='\[\e[33m\]'
+mag='\[\e[34m\]'
+pin='\[\e[35m\]'
 
-function set_bash_prompt () {
+function set_bash_prompt() {
 
   # We do this first so we don't lose the return value of the last command. 
-  [ $? -eq 0 ] && end="${BGREEN}" || end="${BRED}" 
+  [ $? -eq 0 ] && end="${bol}${gre}" || end="${bol}${red}" 
 
-  prefix="${BBLUE}[${BGREY}\u${RED}@${GREY}\h${BBLUE}] "
-  dir="${PINK}\W "
+  prefix="${bol}${mag}[${res}${bol}\u${red}@${res}${bol}\h${bol}${mag}] "
+  dir="${pin}\W "
   branch_name=$(git branch 2> /dev/null | sed '/^[^*]/d; s/* \(.*\)/(\1)/')
 
-  [ -n "$VIRTUAL_ENV" ] && virt_env="${YELLOW} " || virt_env=""
-  [ -n "$branch_name" ] && branch="${WHITE} ${YELLOW}$branch_name " || branch=""
+  [ -n "$VIRTUAL_ENV" ] && virt_env="${yel} " || virt_env=""
+  [ -n "$branch_name" ] && branch="${res} ${yel}$branch_name " || branch=""
 
-  PS1="${virt_env}${prefix}${dir}${branch}${end} ${WHITE}"
+  PS1="${virt_env}${prefix}${dir}${branch}${end} ${res}"
 }
 
 # Tell bash to execute this function just before displaying its prompt.
