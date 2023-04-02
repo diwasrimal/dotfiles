@@ -1,0 +1,79 @@
+{
+    "layer": "top", // Waybar at top layer
+    "modules-left": ["wlr/workspaces"],
+    "modules-right": ["pulseaudio", "tray", "network", "battery", "clock"],
+
+    "wlr/workspaces": {
+        "disable-scroll": true,
+        "on-click": "activate",
+        "all-outputs": true,
+        "active-only": false,
+        "format": "{name}",
+    },
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+    "clock": {
+        "format": "{: %b %d %a  %I:%M %p}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        },
+        "actions":  {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+
+    "cpu": {
+        "format": "　{usage}%"
+    },
+
+    "memory": {
+        "format": "　{}%"
+    },
+
+    "backlight": {
+        //"device": "intel_backlight",
+        "format": "　{percent}%",
+        "format-icons": ["", ""]
+    },
+
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 10
+        },
+        "format-icons": [" ", " ", " ", ",", " "],
+        "format": "{icon} {capacity}%",
+    },
+
+    "network": {
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format-wifi": "　{signalStrength}%",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ethernet",
+        "format-disconnected": "⚠"
+    },
+
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "　{volume}%",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
+        "format-icons": {
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    }
+}
