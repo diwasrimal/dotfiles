@@ -17,6 +17,7 @@ icon=' '
 low=/tmp/battery-low
 critical=/tmp/battery-critical
 noti_icons="$HOME/.icons/notification"
+noti_sounds=/usr/share/sounds/freedesktop/stereo
 
 if [ "$status" = "Charging" ]; then
   icon=" $icon"
@@ -32,7 +33,8 @@ else
   elif [ $charge -le 25 ] && [ ! -f $low ]; then
     touch $low
     notify-send -i "$noti_icons/low-battery.png" \
-      -t 5500 "Battery low!"
+      -t 5500 "Battery low!" &&
+      [ -f "$noti_sounds/bell.oga" ] && paplay "$noti_sounds/bell.oga"
   fi
 fi
 

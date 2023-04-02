@@ -9,7 +9,7 @@ previewdir="${XDG_CONFIG_HOME:-$HOME/.config}/ncmpcpp/previews"
 
 filename="$(mpc --format %file% current)"
 [ -z "$filename" ] && notify-send -r 27072 \
-    -i $HOME/.icons/notification/music-disabled.png "No songs in list!" && exit
+    -i $HOME/.icons/notification/music-disabled.png "Nothing playing!" && exit
 
 filepath="$music_dir/$filename"
 previewname="$previewdir/$(mpc current | base64).png"

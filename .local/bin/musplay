@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Play a song from your playlist.
+
+# Refresh playlist
+mpc add / && mpc update
+selected=$(mpc listall | dmenu -i -l 20 | sed 's/\.[^.]*$//; s/.* - //')
+
+[ -n "$selected" ] && mpc searchplay "$selected"
+
+songinfo

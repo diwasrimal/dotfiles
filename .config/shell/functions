@@ -1,0 +1,8 @@
+#   -*- shell-script -*-
+
+lst () {
+    [ -n "$1" ] && dir=$1 || dir=.
+    /usr/bin/ls -t "$dir" | head -n1
+}
+
+# ex:filetype=sh

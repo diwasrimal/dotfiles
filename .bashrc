@@ -17,8 +17,9 @@
 shopt -s cdspell
 complete -d cd
 
-# Load aliases
-. ~/.config/shell/aliasrc
+# Load custom aliases and functions
+. ~/.config/shell/aliases
+. ~/.config/shell/functions
 
 # Use vi bindings
 set -o vi

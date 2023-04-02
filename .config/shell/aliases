@@ -1,3 +1,5 @@
+#   -*- shell-script -*-
+
 # Navigation
 alias ..="cd .."
 alias ...="cd ../.."
@@ -13,9 +15,9 @@ alias pics="cd ${XDG_PICTURES_DIR:-$HOME/Pictures}"
 alias docs="cd ${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
 
 # Configurations
-alias aliasconf="$EDITOR $HOME/.config/shell/aliasrc"
+alias alconf="$EDITOR $HOME/.config/shell/aliases"
 alias dunstconf="$EDITOR $HOME/.config/dunst/dunstrc"
-alias tmuxconf="$EDITOR $HOME/.config/tmux/tmux.conf"
+alias tmconf="$EDITOR $HOME/.config/tmux/tmux.conf"
 alias bashconf="$EDITOR $HOME/.bashrc"
 alias hkdconf="$EDITOR $HOME/.config/sxhkd/sxhkdrc"
 alias alaconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
@@ -63,3 +65,5 @@ alias s='startx'
 alias xephs='startx -- /usr/bin/Xephyr'
 alias nv='nvim'
 alias dash='dash -E'
+
+# ex: filetype=sh
