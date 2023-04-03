@@ -28,7 +28,6 @@ window:
   multiplier: 3
 
   # Background opacity
-  opactiy: 1
   # opacity: 0.9
 
 
@@ -47,9 +46,6 @@ key_bindings:
 # Font
 font:
   normal:
-    family: "JetBrainsMono Nerd Font"
-    style: Regular
-
     family: "monospace"   # fallback
     style: Regular
 

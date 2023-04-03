@@ -1,0 +1,44 @@
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+set scroll-step 50
+set window-title-basename "true"
+set selection-clipboard "clipboard"
+
+# Mappings
+# Syntax: map [mode] <binding> <shortcut function> <argument>
+unmap [normal] d
+unmap [fullscreen] d
+
+map [normal] d scroll half-down
+map [normal] u scroll half-up
+map [fullscreen] d scroll half-down
+map [fullscreen] u scroll half-up
+
+map [normal] | toggle_page_mode
+map [fullscreen] | toggle_page_mode
+
+
+# Better colors
+# 
+set default-bg                  "#282a36" # Background
+set default-fg                  "#f8f8f2" # Foreground
+set recolor-lightcolor          "#282a36" # Background
+set recolor-darkcolor           "#f8f8f2" # Foreground
+
+set statusbar-bg                "#1E1F29" # Background (Darker)
+set statusbar-fg                "#f8f8f2" # Foreground
+set inputbar-bg                 "#1E1F29" # Background (Darker)
+set inputbar-fg                 "#50fa7b" # Purple
+
+set index-bg                    "#282a36" # Background
+set index-fg                    "#f8f8f2" # Foreground
+set index-active-bg             "#44475a" # Current Line
+set index-active-fg             "#bd93f9" # Foreground
+
+set completion-bg               "#282a36" # Background
+set completion-fg               "#6272a4" # Comment
+set completion-group-bg         "#282a36" # Background
+set completion-group-fg         "#f1fa8c" # Yellow
+set completion-highlight-bg     "#44475a" # Selection
+set completion-highlight-fg     "#f8f8f2" # Foreground
+

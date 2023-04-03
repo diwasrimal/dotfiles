@@ -2,10 +2,17 @@ xmodmap ~/.Xmodmap &
 
 nitrogen --restore &
 
-[ ! -s ~/.cache/mpd/pid ] && mpd &
+# [ -f ~/.Xresources ] && xrdb -merge -I$HOME ~/.Xresources &
+
+# [ ! -s ~/.cache/mpd/pid ] && mpd &
+
+# Add songs to playlist
+mpc add / &
+
 pgrep nvim || nvim --headless &
 
-pcmanfm --daemon-mode &
+# pcmanfm --daemon-mode &
+Thunar --daemon &
 
 dunst &
 picom &

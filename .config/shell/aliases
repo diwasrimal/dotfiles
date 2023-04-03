@@ -40,7 +40,6 @@ alias mirrorupdate='sudo reflector --country India --latest 5 --fastest 5 \
 
 alias ls='ls --color=auto'
 alias ll='ls -lah'
-alias lsr='ls -t | head -1'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'

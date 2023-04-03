@@ -41,19 +41,19 @@ class = Dunst
 # context = ctrl+shift+period
 
 [urgency_low]
-frame_color = "#B48EAD"
+frame_color = "#bd93f9"
 background = "#292B38"
 foreground = "#D2E9C7"
 timeout = 2
 
 [urgency_normal]
-frame_color = "#B48EAD"
+frame_color = "#bd93f9"
 background = "#292B38"
 foreground = "#D2E9C7"
 timeout = 4
 
 [urgency_critical]
-frame_color = "#BF616A"
+frame_color = "#ff5555"
 background = "#292B38"
-foreground = "#BF616A"
+foreground = "#ff5555"
 timeout = 8
