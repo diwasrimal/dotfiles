@@ -8,61 +8,64 @@ red="\033[1;31m"
 green="\033[1;32m"
 white="\033[1;37m"
 
-# File with bookmarks (create file if missing)
+# Removes duplicates without changing the order of directories
+remove_dups() {
+    sort -u "$bmfile" -o "$bmfile"
+}
+
+# File with bookmarks (create if missing)
 bmfile="$HOME/.local/share/bookmarked-dirs.txt"
 [ -e "$bmfile" ] || touch "$bmfile"
 
 # Current working directory (relative to $HOME)
-wd="$(printf '%s\n' "${PWD#"$HOME"/}")"
+[ "$PWD" = "$HOME" ] && wd="" || wd=${PWD##$HOME/}/
 
 # Never bookmark these directories
 dirs_exclude="venv .git node_modules"
 exclude_flag=$(echo $dirs_exclude | sed 's/ / -o -name /g; s/^/-name /g')
 
-# Help message
-if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-  echo "Usage: 
+case $1 in
+
+    # Help message
+    -h|--help) echo "Usage: 
       bmdir -c : Bookmark current directory
       bmdir -r : Bookmark all child directories (depth 1)
       bmdir -s : Show bookmark status of current directory
-      bmdir -e : Open bookmarks file"
+      bmdir -e : Open bookmarks file" 
+        ;;
 
-# Bookmark all child directories (having depth 1)
-elif [ "$1" = "-r" ]; then
-  dirs="$(find -maxdepth 1 -type d \( $exclude_flag \) -prune -o -type d -print | 
-    sed "/^\.$/d; s,\.,$wd,")"
-  [ -z "$dirs" ] && printf "${red}No child directories!${white}\n" && exit
+    # Bookmark all child directories (having depth 1)
+    -r) dirs="$(find -maxdepth 1 -type d \( $exclude_flag \) -prune -o -type d -print | 
+            sed "/^\.$/d; s,^\./,$wd,")"
+        [ -z "$dirs" ] && printf "${red}No child directories!${white}\n" && exit
 
-  printf "$dirs\n\nBookmark these directories (y/n) ? "
-  read choice
-  if [ "$choice" = "y" ]; then 
-    echo "$dirs" >> "$bmfile" 
-    printf "${green}Bookmarked!${white}\n"
-  fi
+        printf "$dirs\n\nBookmark these directories (y/n) ? "
+        read choice
+        if [ "$choice" = "y" ]; then 
+            echo "$dirs" >> "$bmfile" 
+            printf "${green}Bookmarked!${white}\n"
+        fi
+        remove_dups
+        ;;
 
-# Bookmark current directory
-elif [ "$1" = "-c" ]; then
-  echo "$wd" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+    # Bookmark current directory
+    -c) echo "$wd" >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+        remove_dups
+        ;;
 
-# Show bookmark status of current dir
-elif [ "$1" = "-s" ]; then
-  if grep -x -q "$wd" "$bmfile"; then
-    printf "${green}Bookmarked!${white}\n"
-  else
-    printf "${red}Not in bookmarks!${white}\n"
-  fi
+    # Show bookmark status of current dir
+    -s) if grep -x -q "$wd" "$bmfile"; then
+            printf "${green}Bookmarked!${white}\n"
+        else
+            printf "${red}Not in bookmarks!${white}\n"
+        fi
+        ;;
 
-# Open bookmarks file for editing
-elif [ "$1" = "-e" ]; then
-  $EDITOR "$bmfile"
+    # Open bookmarks file for editing
+    -e) $EDITOR "$bmfile"
+        ;;
 
-else
-  echo "Incorrect Usage, see bmdir -h or bmdir --help"
-  exit 1
-fi
-
-# TODO: 
-# [ ] - Don't add duplicate bookmarks
-# [ ] - Don't mess comments while removng duplicates
-
-# sort "$bmfile" | uniq > "$bmfile"   # Duplicate gayo, comment ni udyo 
+    *) echo "Incorrect Usage, see bmdir -h or bmdir --help"
+        exit 1
+        ;;
+esac

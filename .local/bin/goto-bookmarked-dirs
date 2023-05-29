@@ -1,22 +1,28 @@
 #!/bin/sh
 
-# cd into bookmarked-dirs quickly
+# Change directories lightning fast!
 # Run this script with an alias in your shell config
 # alias g='source goto-bookmarked-dirs'
 
-bmfile="$HOME/.local/share/bookmarked-dirs.txt"
-[ ! -e $bmfile ] && touch $bmfile
+bmfile="$HOME/.local/share/bookmarked-dirs.txt"  # Same as `bmdir`
 
-bms="$(sed '/^#/d; /^$/d' "$bmfile")"
-[ -z "$bms" ] && printf "\033[1;31mNo bookmarks listed!\033[1;37m\n" && return 1
+# Exit if no bookmarks or bookmark file
+[ ! -f "$bmfile" ] && touch "$bmfile" && echo "$bmfile created!" && return 0
+[ ! -s "$bmfile" ] && printf "\033[1;31mNo bookmarks listed!\033[1;37m\n" && return 1
 
 # Select a bookmark using fzf
-selected="$(echo "$bms" | fzf)"
+selected="$(cat "$bmfile" | fzf)"
 [ -z "$selected" ] && return 1
-
 [ -d "$HOME/$selected" ] && cd "$HOME/$selected" && return
 
-# Invalid bookmark
-printf "\033[1;31mNo such directory!\033[1;37m\n" 
+# Delete invalid bookmark from list
+printf "\033[1;31m$HOME/$selected doesn't exist!\033[1;37m\n" 
+printf "remove bookmark / create directory [R/c]? "
+read choice
+case $choice in
+    c|C) mkdir -p "$HOME/$selected" && cd "$HOME/$selected" && return ;;
+    *) sed -i "\~$selected~d" "$bmfile"
+esac
+
 return 1
 

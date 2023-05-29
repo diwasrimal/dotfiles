@@ -1,3 +1,5 @@
 #!/bin/sh
 
+# Open up your todos file
+
 $TERMINAL -e nvim ~/.local/share/todos.md &

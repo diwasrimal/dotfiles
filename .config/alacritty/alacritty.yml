@@ -11,9 +11,9 @@ live_config_reload: true
 
 # Terminal window settings
 window:
-  dimensions:
-    columns: 82
-    lines: 24
+  # dimensions:
+  # columns: 82
+  # lines: 24
 
   padding:
     x: 4
@@ -46,7 +46,7 @@ key_bindings:
 # Font
 font:
   normal:
-    family: "monospace"   # fallback
+    family: "JetBrainsMono Nerd Font"   # fallback
     style: Regular
 
   size: 10

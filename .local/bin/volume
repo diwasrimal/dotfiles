@@ -5,8 +5,8 @@
 vol=$(pamixer --get-volume)
 
 icon=''
-[ $vol -gt 20 ] && icon=''
-[ $vol -gt 50 ] && icon='墳'
-[ $vol -gt 80 ] && icon=''
+[ "$vol" -gt 20 ] && icon=''
+[ "$vol" -gt 50 ] && icon='墳'
+[ "$vol" -gt 80 ] && icon=''
 
 echo "$icon $vol%"

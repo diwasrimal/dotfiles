@@ -1,6 +1,6 @@
 #!/bin/sh
 
-selected="$(man -k . | fzf -d '-' -n 1 --header="Search man pages")"
+selected="$(man -k . | fzf -d ' - ' -n 1 --header="Search man pages")"
 
 manual="$(echo "$selected" | awk '{ print $1 }')"
 page="$(echo "$selected" | awk '{ print $2 }' | sed 's/(//; s/)//')"

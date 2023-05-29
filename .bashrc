@@ -33,4 +33,3 @@ bind -m vi-insert "\C-p":previous-history
 bind -m vi-insert "\C-n":next-history
 bind -m vi-insert "\C-k":insert-last-argument
 
-[[ $(tty) != /dev/tty* ]] && remind-me
