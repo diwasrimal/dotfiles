@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
+  internet="󰖩 "
+elif grep -xq 'up' /sys/class/net/e*/operstate 2>/dev/null ; then
+  internet="eth"
+else
+  internet="󱚼 "
+fi
+
+if rfkill list bluetooth | grep -iq 'soft blocked: no'; then
+    bluetooth=""
+else
+    bluetooth="󰂲"
+fi 
+
+echo "$internet $bluetooth"

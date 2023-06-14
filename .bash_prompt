@@ -13,7 +13,7 @@ pin='\[\e[35m\]'
 function set_bash_prompt() {
 
   # We do this first so we don't lose the return value of the last command. 
-  [ $? -eq 0 ] && end="${bol}${gre}" || end="${bol}${red}" 
+  [ $? -eq 0 ] && end="${bol}${gre}󰁕" || end="${bol}${red}󰁕" 
 
   prefix="${bol}${mag}[${res}${bol}\u${red}@${res}${bol}\h${bol}${mag}] "
   dir="${pin}\W "
