@@ -6,8 +6,7 @@ alias ...="cd ../.."
 alias g=". goto-bookmarked-dirs"
 alias o='xdg-open "$(ls -A | fzf)" >/dev/null 2>&1'
 alias gao='g && o'
-alias tn='tmux new -s "${PWD##*/}"'
-alias gat='g && tn'
+alias tn='tmux new -A -s "${PWD##*/}"'
 alias ywd='echo -n $PWD | xclip -selection clipboard'
 alias dl="cd ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
 alias mus="cd ${XDG_MUSIC_DIR:-$HOME/Music}"
@@ -56,6 +55,10 @@ alias v='xclip -o -selection clipboard'
 alias smi='sudo make install'
 alias smci='sudo make clean install'
 alias vba=". venv/bin/activate"
+
+# Quickly run live server on any html file
+alias lvser="find $HOME/code -type d \( -name node_modules -o -name venv \) \
+    -prune -o -name '*.html' -print | fzf | xargs -I{} live-server {}"
 
 alias hst="history | cut -c 8- | sort | uniq | fzf | tr -d '\n' | xclip -sel c"
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"

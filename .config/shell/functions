@@ -1,8 +1,18 @@
 #   -*- shell-script -*-
 
-lsr () {
+lsr() {
     [ -n "$1" ] && dir=$1 || dir=.
     /usr/bin/ls -t "$dir" | head -n1
+}
+
+# Create a new tmux session or attach in a bookmark
+gat() {
+    # Detach and join if currently inside tmux
+    if [ -n "$TMUX" ]; then
+        tmux detach -E 'bash -ic "g && tn || tmux attach"'
+    else
+        g && tn
+    fi
 }
 
 # ex:filetype=sh

@@ -18,7 +18,7 @@ bmfile="$HOME/.local/share/bookmarked-dirs.txt"
 [ -e "$bmfile" ] || touch "$bmfile"
 
 # Current working directory (relative to $HOME)
-[ "$PWD" = "$HOME" ] && wd="" || wd=${PWD##$HOME/}/
+[ "$PWD" = "$HOME" ] && wd="" || wd=${PWD##$HOME/}
 
 # Never bookmark these directories
 dirs_exclude="venv .git node_modules"
@@ -36,7 +36,7 @@ case $1 in
 
     # Bookmark all child directories (having depth 1)
     -r) dirs="$(find -maxdepth 1 -type d \( $exclude_flag \) -prune -o -type d -print | 
-            sed "/^\.$/d; s,^\./,$wd,")"
+            sed "/^\.$/d; s,^\.,$wd,")"
         [ -z "$dirs" ] && printf "${red}No child directories!${white}\n" && exit
 
         printf "$dirs\n\nBookmark these directories (y/n) ? "
