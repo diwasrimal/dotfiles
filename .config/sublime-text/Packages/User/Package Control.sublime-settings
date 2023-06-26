@@ -1,16 +1,16 @@
 {
 	"bootstrapped": true,
-	"installed_packages":
-	[
-		"Dracula Color Scheme",
-		"FileIcons",
-		"JsPrettier",
-		"LSP",
-		"LSP-eslint",
-		"Package Control",
-		"Vintage Escape",
-	],
 	"in_process_packages":
 	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"Babel",
+		"JsPrettier",
+		"LSP",
+		"LSP-typescript",
+		"Package Control",
+		"Vintage Escape",
 	],
 }

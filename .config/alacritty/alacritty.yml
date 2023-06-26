@@ -1,5 +1,6 @@
 import:
   - ~/.config/alacritty/dracula.yml
+  # - ~/.config/alacritty/monokai_pro.yml
 
 # Set environment variables
 env:
@@ -40,13 +41,15 @@ cursor:
   unfocused_hollow: true
 
 key_bindings:
-   - { key: Back, mods: Control, chars: "\x17" }
+  - { key: Back, mods: Control, chars: "\x17" }
+  - { key: G, mods: Alt, chars: "gat\r" }
+  
 
 
 # Font
 font:
   normal:
-    family: "JetBrainsMono Nerd Font"   # fallback
+    family: "JetBrainsMono NL Nerd Font" 
     style: Regular
 
   size: 10
