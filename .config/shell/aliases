@@ -3,18 +3,18 @@
 # Navigation
 alias ..="cd .."
 alias ...="cd ../.."
-alias g=". goto-bookmarked-dirs"
+alias g=". goto-bookmarked-dirs"    # Quickly cd into a bookmark. See ~/.local/bin/goto-bookmarked-dirs
 alias o='xdg-open "$(ls -A | fzf)" >/dev/null 2>&1'
-alias gao='g && o'
-alias tn='tmux new -A -s "${PWD##*/}"'
-alias ywd='echo -n $PWD | xclip -selection clipboard'
+alias gao='g && o'  # Go somewhere and open something
+alias tn='tmux new -A -s "${PWD##*/}"'     # Open new tmux session in curr dir
+alias ywd='echo -n $PWD | xclip -selection clipboard'   # Copy (yank) current directory
 alias dl="cd ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
 alias mus="cd ${XDG_MUSIC_DIR:-$HOME/Music}"
 alias vids="cd ${XDG_VIDEOS_DIR:-$HOME/Videos}"
 alias pics="cd ${XDG_PICTURES_DIR:-$HOME/Pictures}"
 alias docs="cd ${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
 
-# Configurations
+# Quicklly edit configuration files
 alias alconf="$EDITOR $HOME/.config/shell/aliases"
 alias dunstconf="$EDITOR $HOME/.config/dunst/dunstrc"
 alias tmconf="$EDITOR $HOME/.config/tmux/tmux.conf"
@@ -24,10 +24,12 @@ alias alaconf="$EDITOR $HOME/.config/alacritty/alacritty.yml"
 alias wmconf="cd $HOME/.local/src/dwm && $EDITOR config.h"
 alias cnotes='$EDITOR $HOME/docs/code-notes'
 
-# Media
-alias vn='viewnior'
+# Print out paths of newest screenshot and reording
 alias newss='ls -t $HOME/pics/ss | head -1 | xargs -I{} echo -n "$HOME/pics/ss/{}"'
 alias newrec='ls -t $HOME/vids/recs | head -1 | xargs -I{} echo -n "$HOME/vids/recs/{}"'
+
+# Media
+alias vn='viewnior'
 alias ssop='viewnior $(newss)'
 alias recop='mpv $(newrec)'
 alias ytp="yt-dlp -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"   # Download playlist
@@ -36,6 +38,8 @@ alias cam='mpv av://v4l2:/dev/video0 --profile=low-latency --untimed'
 # Package management
 alias pacs='pacman -Ss'
 alias yays='yay -Ss'
+
+# Updates pacman mirrorlist (Archlinux)
 alias mirrorupdate='sudo reflector --country India --latest 5 --fastest 5 \
   --save /etc/pacman.d/mirrorlist'
 
@@ -47,9 +51,10 @@ alias ip='ip -color=auto'
 alias df='df -h'
 alias free='free -h'
 
-# Copy/paste
+# Faster copy/paste to/from clipboard
 alias c='xclip -selection clipboard'
 alias v='xclip -o -selection clipboard'
+alias hst="history | cut -c 8- | sort | uniq | fzf | tr -d '\n' | xclip -sel c"
 
 # Programming shortcuts
 alias smi='sudo make install'
@@ -60,7 +65,8 @@ alias vba=". venv/bin/activate"
 alias lvser="find $HOME/code -type d \( -name node_modules -o -name venv \) \
     -prune -o -name '*.html' -print | fzf | xargs -I{} live-server {}"
 
-alias hst="history | cut -c 8- | sort | uniq | fzf | tr -d '\n' | xclip -sel c"
+
+# Aliases to manage dotfiles
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 alias dotsignore='cd; dots status -s | grep "?" | sed "s/?? //; 1i\\\\" \
                   >> ~/.gitignore; ${EDITOR:-nano} ~/.gitignore; cd - >/dev/null 2>&1'

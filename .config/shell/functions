@@ -1,11 +1,14 @@
 #   -*- shell-script -*-
 
+# List most recent file in given directory
 lsr() {
     [ -n "$1" ] && dir=$1 || dir=.
     /usr/bin/ls -t "$dir" | head -n1
 }
 
-# Create a new tmux session or attach in a bookmark
+# Create or attach tmux sessions
+# 'g' goes to a bookmarked directory. See: ~/.config/shell/aliases
+# and bookmarks are handled using 'bmdir' script. See: ~/.local/bin/bmdir
 gat() {
     # Detach and join if currently inside tmux
     if [ -n "$TMUX" ]; then
