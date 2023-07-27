@@ -1,8 +1,0 @@
-#!/bin/sh
-
-[ -z "$1" ] && echo "Provide a search query!" && exit
-
-for query in "$@"; do
-  q="$(echo "$query" | tr ' ' '+')"
-  curl -s https://wallhaven.cc/api/v1/search?q=$ | jq '.data[].path' | xargs -I{} wget {}
-done

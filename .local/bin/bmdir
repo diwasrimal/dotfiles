@@ -35,7 +35,7 @@ case $1 in
         ;;
 
     # Bookmark all child directories (having depth 1)
-    -r) dirs="$(find -maxdepth 1 -type d \( $exclude_flag \) -prune -o -type d -print | 
+    -r) dirs="$(find . -maxdepth 1 -type d \( $exclude_flag \) -prune -o -type d -print | 
             sed "/^\.$/d; s,^\.,$wd,")"
         [ -z "$dirs" ] && printf "${red}No child directories!${white}\n" && exit
 
@@ -62,7 +62,7 @@ case $1 in
         ;;
 
     # Open bookmarks file for editing
-    -e) $EDITOR "$bmfile"
+    -e) ${EDIOR:-nvim} "$bmfile"
         ;;
 
     *) echo "Incorrect Usage, see bmdir -h or bmdir --help"

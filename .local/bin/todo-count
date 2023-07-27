@@ -1,8 +1,0 @@
-#!/bin/sh
-
-file=$HOME/.local/share/todos.md
-! [ -f $file ] && echo "No todo file!" 
-
-count=$(sed -n '/^\[ \]/p' $file | wc -l)
-urgent=$(sed -n '/\[\[ \]\]/p' $file | wc -l)
-[ "$urgent" = "0" ] && echo "🔔 $count" || echo "🔔 $urgent+$count" 

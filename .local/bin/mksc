@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Make a script file
-
-[ -e "$1" ] && echo "File exists!" && exit
-
-echo "#!/bin/sh" > "$1"
-chmod +x "$1"
-${EDITOR:-nano} "$1"

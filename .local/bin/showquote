@@ -1,7 +1,0 @@
-#!/bin/sh
-
-file=$HOME/.local/share/quotes
-
-shuf -n1 ~/.local/share/quotes | 
-    awk -F '\t' '{ print "\n\033[1;37m📘 "$1" \n\n\033[1;33m✍️ " $2 "\n" }'
-

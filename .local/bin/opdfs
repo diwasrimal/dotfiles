@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# Open pdfs quckly with dmenu
-
-dirs="${XDG_DOCUMENTS_DIR:-$HOME/Documents} ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
-
-find $dirs -type f -name *.pdf | dmenu -i -l 20 | xargs -I{} xdg-open "{}"
