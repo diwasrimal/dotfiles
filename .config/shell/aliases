@@ -35,10 +35,8 @@ alias vba=". venv/bin/activate"
 alias lvser="find $HOME/code -type d \( -name node_modules -o -name venv \) \
     -prune -o -name '*.html' -print | fzf | xargs -I{} live-server {}"
 
-
 # Aliases to manage dotfiles
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-alias dotsignore='cd; dots status -s | grep "??" | cut -c 4- > .gitignore; ${EDITOR:-nvim} .gitignore; cd -'
-
+alias dotsignore='cd; dots status -s | grep "??" | cut -c 4- >> .gitignore; ${EDITOR:-nvim} .gitignore; cd - >/dev/null 2>&1'
 
 # ex: filetype=sh
