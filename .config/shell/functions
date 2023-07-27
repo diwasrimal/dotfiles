@@ -1,0 +1,28 @@
+#   -*- shell-script -*-
+
+# Go to a bookmarked directory
+g() {
+    bmfile="$HOME/.local/share/bookmarked-dirs.txt"  # Same as `bmdir`
+
+    # Exit if no bookmarks or bookmark file
+    [ ! -f "$bmfile" ] && touch "$bmfile" && echo "$bmfile created!" && return 0
+    [ ! -s "$bmfile" ] && printf "\033[1;31mNo bookmarks listed!\033[1;37m\n" && return 1
+
+    # Select a bookmark using fzf
+    selected="$(cat "$bmfile" | fzf)"
+    [ -z "$selected" ] && return 1
+    [ -d "$HOME/$selected" ] && cd "$HOME/$selected" && return
+
+    # Delete invalid bookmark from list
+    printf "\033[1;31m$HOME/$selected doesn't exist!\033[1;37m\n" 
+    printf "remove bookmark / create directory [R/c]? "
+    read choice
+    case $choice in
+        c|C) mkdir -p "$HOME/$selected" && cd "$HOME/$selected" && return ;;
+        *) sed -i "\~$selected~d" "$bmfile"
+    esac
+
+    return 1
+}
+
+#ex:filetype=sh
