@@ -1,0 +1,19 @@
+#!/bin/sh
+
+dir=$(find -L . -type d \
+    ! -path '*.git*' ! -path '*node_modules*' \
+    ! -path '*venv*' ! -path '*\.npm*' \
+    ! -path '*\.cache*' \
+    2>/dev/null \
+    | fzf)
+
+printf "Send $dir to\n"
+printf "Recipient [user@ip]: "
+read recipient
+[ -z $recipient ] && echo "Invalid recipient!" && exit 1
+
+printf "Path (~/Desktop/): "
+read path
+[ -z "$path" ] && path="~/Desktop/"
+
+rsync "$dir" "$recipient:$path"
