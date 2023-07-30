@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# Boomark current directory or all child directories
+# Bookmarks stored in ~/.local/share/bookmarked-dirs.txt 
+# Absoulte filepaths are stored 
+
+red="\033[1;31m"
+green="\033[1;32m"
+white="\033[1;37m"
+
+bmfile=~/.local/share/bookmarked-dirs.txt
+[ -e "$bmfile" ] || touch "$bmfile"
+
+# Removes duplicates without changing the order of directories
+remove_dups() {
+    sort -u "$bmfile" -o "$bmfile"
+}
+
+show_help() {
+	printf "Usage:
+	bmd    : Bookmark current directory
+	bmd -c : Bookmark child directories
+	bmd -s : Show bookmark status of current directory
+	bmdir -e : Open bookmarks file\n" 
+}
+
+if [ -z "$1" ]; then
+	echo $PWD >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+    remove_dups
+    exit 0
+fi
+
+case $1 in
+
+    # Help message
+    -h|--help) show_help ;;
+
+	# Bookmark child directories
+	-c) dirs=$(find $PWD -type d -maxdepth 1 \
+			! -path $PWD \
+			! -path "*.git*" \
+			! -path "*node_modules*" \
+			! -path "*venv*" \
+			2>/dev/null)
+		printf "\n$dirs\n\nBookmark these directories (y/n) ? "
+		read response
+		if [ "$response" = "y" ]; then
+			echo "$dirs" >> "$bmfile"
+		fi
+		remove_dups
+		;;
+
+    # Show bookmark status of current dir
+    -s) if grep -x -q "$PWD" "$bmfile"; then
+            printf "${green}Bookmarked!${white}\n"
+        else
+            printf "${red}Not in bookmarks!${white}\n"
+        fi
+        ;;
+
+    # Open bookmarks file for editing
+    -e) ${EDIOR:-nvim} "$bmfile"
+        ;;
+
+    *) show_help
+        exit 1
+        ;;
+esac

@@ -11,18 +11,19 @@ g() {
     # Select a bookmark using fzf
     selected="$(cat "$bmfile" | fzf)"
     [ -z "$selected" ] && return 1
-    [ -d "$HOME/$selected" ] && cd "$HOME/$selected" && return
+    [ -d "$selected" ] && cd "$selected" && return
 
     # Delete invalid bookmark from list
-    printf "\033[1;31m$HOME/$selected doesn't exist!\033[1;37m\n" 
+    printf "\033[1;31m$selected doesn't exist!\033[1;37m\n" 
     printf "remove bookmark / create directory [R/c]? "
     read choice
     case $choice in
-        c|C) mkdir -p "$HOME/$selected" && cd "$HOME/$selected" && return ;;
-        *) sed -i "\~$selected~d" "$bmfile"
+        c|C) mkdir -p "$selected" && cd "$selected" && return ;;
+        *) escaped=$(echo "$selected" | sed 's/\//\\\//g')
+           sed -i.bak "/${escaped}/d" "$bmfile"
+           unset escaped
+           ;;
     esac
-
-    return 1
 }
 
 #ex:filetype=sh

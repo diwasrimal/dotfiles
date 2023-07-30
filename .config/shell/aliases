@@ -10,6 +10,10 @@ alias pics="cd ${XDG_PICTURES_DIR:-$HOME/Pictures}"
 alias docs="cd ${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
 alias dev="cd $HOME/Developer"
 
+# Edit config files quickly
+alias alconf='$EDITOR ~/.config/shell/aliases'
+alias tmconf='$EDITOR ~/.config/tmux/tmux.conf'
+
 # Download playlists with yt-dlp
 alias ytp="yt-dlp -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'" 
 
@@ -24,7 +28,7 @@ alias free='free -h'
 # Faster copy/paste to/from clipboard
 alias c='pbcopy'
 alias v='pbpaste'
-alias hst="history | cut -c 8- | sort | uniq | fzf | tr -d '\n' | c"
+alias hst="history -1 1 | cut -c 8- | sort | uniq | fzf | tr -d '\n' | c"
 
 # Programming shortcuts
 alias smi='sudo make install'
