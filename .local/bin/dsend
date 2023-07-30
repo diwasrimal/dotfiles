@@ -16,4 +16,4 @@ printf "Path (~/Desktop/): "
 read path
 [ -z "$path" ] && path="~/Desktop/"
 
-rsync "$dir" "$recipient:$path"
+rsync -r "$dir" "$recipient:$path"
