@@ -10,5 +10,5 @@ map <leader>y "+y
 nmap <leader>w <C-w>
 nmap <leader>Y "+Y
 
-
-autocmd FileType markdown :set spell
+autocmd FileType markdown set spell
+autocmd FileType javascriptreact,typescriptreact,html set sw=2 ts=2
