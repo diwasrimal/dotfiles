@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Tmux Session Manager
+# Usage: tsm [/path/to/dir]
+
+open_session() {
+    dir=$1
+    [ -d "$dir" ] || exit 1
+    session_name="${dir##*/}"
+
+    if [ -z "$TMUX" ]; then
+        tmux new-session -As "$session_name" -c "$dir"
+    else
+        tmux new-session -ds "$session_name" -c "$dir"
+        tmux switch-client -t "$session_name"
+    fi
+}
+
+[ -n "$1" ] && [ -d "$1" ] && open_session "$1" && exit
+
+dir=$(find $HOME/Developer $HOME/Developer/projects \
+    -type d -maxdepth 1 -mindepth 1 | fzf)
+
+open_session "$dir"
