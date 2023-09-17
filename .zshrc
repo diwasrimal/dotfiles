@@ -1,12 +1,17 @@
-# Prompt with version control status
+# Completion
+autoload -U compinit
+zstyle ':completion:*' menu select
+compinit
+
+# Prompt with version control
 autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{cyan}%n%f %F{magenta}%~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%%%f '
-# 'user ~/path/to/dir main % '
+PROMPT='%F{cyan}%n%f %F{magenta}%3~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%%%f '
+#PS1="%F{magenta}%1~%f %f%(?.%f.%F{red})%#%f "
 
-# load custom aliases and functions
+# Load custom aliases and functions
 . ~/.config/shell/aliases
 . ~/.config/shell/functions
 
@@ -27,10 +32,5 @@ bindkey '^Y' yank
 bindkey '^_' undo
 bindkey '^?' backward-delete-char
 bindkey '^[^?' backward-kill-word
-function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/[n]}/(main|viins)/[i]}"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

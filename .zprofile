@@ -1,6 +1,4 @@
-eval $(/opt/homebrew/bin/brew shellenv)
 export CLICOLOR=1
-
 export PATH=$PATH:~/.local/bin:~/.cargo/bin
 export EDITOR="nvim"
 
@@ -12,3 +10,5 @@ export LESS_TERMCAP_us=$'\e[4m'      # begin underline
 export LESS_TERMCAP_me=$'\e[0m'      # reset bold/blink
 export LESS_TERMCAP_se=$'\e[0m'      # reset reverse video
 export LESS_TERMCAP_ue=$'\e[0m'      # reset underline
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
