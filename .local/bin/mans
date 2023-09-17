@@ -1,6 +1,7 @@
 #!/bin/sh
 
 selected="$(man -k . | fzf -d ' - ' -n 1 --header="Search man pages")"
+[ -z "$selected" ] && exit 1
 
 manual="$(echo "$selected" | awk '{ print $1 }')"
 page="$(echo "$selected" | awk '{ print $2 }' | sed 's/(//; s/)//')"

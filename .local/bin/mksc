@@ -4,4 +4,4 @@
 [ -z "$1" ] && echo "Usage: mksc <scriptname>" && exit 1
 
 [ -f "$1" ] || echo "#!/bin/sh" > "$1" && chmod +x "$1"
-${EDITOR:-nano} "$1"
+${EDITOR:-vim} "$1"

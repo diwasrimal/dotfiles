@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Send files or directory to a server using rsync or scp
+
+usage="Usage: ${0##*/} [file|dir]"
+[ ! -f "$1" -a ! -d "$1" ] && echo "$usage" && exit 1
+
+printf "Recipient [user@ip]: "
+read recipient
+[ -z "$recipient" ] && exit 1
+
+printf "Path [~/Desktop]: "
+read path
+[ -z "$path" ] && exit 1
+
+if command -v rsync >/dev/null 2>&1; then
+    rsync --human-readable --progress -r "$1" "$recipient:$path"
+else
+    scp -r "$1" "$recipient:$path"
+fi

@@ -17,15 +17,17 @@ remove_dups() {
 }
 
 show_help() {
-	printf "Usage:
-	bmd    : Bookmark current directory
-	bmd -c : Bookmark child directories
-	bmd -s : Show bookmark status of current directory
-	bmdir -e : Open bookmarks file\n" 
+    script="${0##*/}"
+    printf "Usage:
+    $script    : Bookmark current directory
+    $script -c : Bookmark child directories
+    $script -s : Show bookmark status of current directory
+    $script -d : Delete invalid paths
+    $script -e : Open bookmarks file\n"
 }
 
 if [ -z "$1" ]; then
-	echo $PWD >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+    echo $PWD >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
     remove_dups
     exit 0
 fi
@@ -35,20 +37,21 @@ case $1 in
     # Help message
     -h|--help) show_help ;;
 
-	# Bookmark child directories
-	-c) dirs=$(find $PWD -type d -maxdepth 1 \
-			! -path $PWD \
-			! -path "*.git*" \
-			! -path "*node_modules*" \
-			! -path "*venv*" \
-			2>/dev/null)
-		printf "\n$dirs\n\nBookmark these directories (y/n) ? "
-		read response
-		if [ "$response" = "y" ]; then
-			echo "$dirs" >> "$bmfile"
-		fi
-		remove_dups
-		;;
+    # Bookmark child directories
+    -c) dirs=$(find $PWD -type d -maxdepth 1 \
+            ! -path $PWD \
+            ! -path "*.git*" \
+            ! -path "*node_modules*" \
+            ! -path "*venv*" \
+            2>/dev/null)
+        [ -z "$dirs" ] && echo "No sub directories" && exit
+        printf "\n$dirs\n\nBookmark these directories (y/n) ? "
+        read response
+        if [ "$response" = "y" ]; then
+            echo "$dirs" >> "$bmfile"
+        fi
+        remove_dups
+        ;;
 
     # Show bookmark status of current dir
     -s) if grep -x -q "$PWD" "$bmfile"; then
@@ -56,6 +59,15 @@ case $1 in
         else
             printf "${red}Not in bookmarks!${white}\n"
         fi
+        ;;
+
+    # Delete invalid paths in file
+    -d) tmpfile=$(mktemp)
+        while read -r path; do
+            [ -d "$path" ] && echo "$path" >> $tmpfile
+        done < "$bmfile"
+        cp $tmpfile "$bmfile"
+        rm $tmpfile
         ;;
 
     # Open bookmarks file for editing
