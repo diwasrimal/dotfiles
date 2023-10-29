@@ -1,9 +1,20 @@
 #!/bin/sh
 
-selected="$(man -k . | fzf -d ' - ' -n 1 --header="Search man pages")"
-[ -z "$selected" ] && exit 1
+# mans: Manpage Search 
+# Quickly opens a man page using fzf
+# Usage: mans [-c]
 
-manual="$(echo "$selected" | awk '{ print $1 }')"
-page="$(echo "$selected" | awk '{ print $2 }' | sed 's/(//; s/)//')"
+# Since `man -k .` is slow on macOS, a list of manuals is
+# stored at ~/.local/share/manpage-list.txt
+# dirty implementation of `mandb`
 
-man $page $manual
+db=~/.local/share/manpage-list.txt
+
+if [ "$1" = "-c" ]; then
+    man -k . > "$db" && echo "Database created at $db"
+    exit
+fi
+
+[ ! -s "$db" ] && echo "No database, use mans -c to create!" && exit
+
+cat "$db" | fzf | sed 's/, .*/ - /; s/\(.*\)(\(.*\)).* - .*/\2 \1/' | xargs man
