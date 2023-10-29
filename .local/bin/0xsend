@@ -2,4 +2,4 @@
 
 # Send file to https://0x0.st
 
-[ -f "$1" ] && curl -F "file=@$1" 0x0.st
+[ -f "$1" ] && curl -sF "file=@$1" 0x0.st || exit 1

@@ -4,10 +4,6 @@
 # Bookmarks stored in ~/.local/share/bookmarked-dirs.txt 
 # Absoulte filepaths are stored 
 
-red="\033[1;31m"
-green="\033[1;32m"
-white="\033[1;37m"
-
 bmfile=~/.local/share/bookmarked-dirs.txt
 [ -e "$bmfile" ] || touch "$bmfile"
 
@@ -27,7 +23,7 @@ show_help() {
 }
 
 if [ -z "$1" ]; then
-    echo $PWD >> "$bmfile" && printf "${green}Bookmarked!${white}\n"
+    echo $PWD >> "$bmfile" && printf "Bookmarked!\n"
     remove_dups
     exit 0
 fi
@@ -55,9 +51,9 @@ case $1 in
 
     # Show bookmark status of current dir
     -s) if grep -x -q "$PWD" "$bmfile"; then
-            printf "${green}Bookmarked!${white}\n"
+            printf "Bookmarked!\n"
         else
-            printf "${red}Not in bookmarks!${white}\n"
+            printf "Not in bookmarks!\n"
         fi
         ;;
 
@@ -71,7 +67,7 @@ case $1 in
         ;;
 
     # Open bookmarks file for editing
-    -e) ${EDIOR:-nvim} "$bmfile"
+    -e) ${EDITOR:-nvim} "$bmfile"
         ;;
 
     *) show_help
