@@ -1,29 +1,15 @@
 #   -*- shell-script -*-
 
-# Go to a bookmarked directory
+# Go to a bookmarked directory or a code project
 g() {
-    bmfile="$HOME/.local/share/bookmarked-dirs.txt"  # Same as `bmdir`
-
-    # Exit if no bookmarks or bookmark file
-    [ ! -f "$bmfile" ] && touch "$bmfile" && echo "$bmfile created!" && return 0
-    [ ! -s "$bmfile" ] && printf "\033[1;31mNo bookmarks listed!\033[1;37m\n" && return 1
-
-    # Select a bookmark using fzf
-    selected="$(cat "$bmfile" | fzf)"
-    [ -z "$selected" ] && return 1
-    [ -d "$selected" ] && cd "$selected" && return
-
-    # Delete invalid bookmark from list
-    printf "\033[1;31m$selected doesn't exist!\033[1;37m\n" 
-    printf "remove bookmark / create directory [R/c]? "
-    read choice
-    case $choice in
-        c|C) mkdir -p "$selected" && cd "$selected" && return ;;
-        *) escaped=$(echo "$selected" | sed 's/\//\\\//g')
-           sed -i.bak "/${escaped}/d" "$bmfile"
-           unset escaped
-           ;;
-    esac
+    bmfile="$HOME/.local/share/bookmarked-dirs.txt"  # Same as `bmd`
+    selected=$(cat "$bmfile" <(find ~/Developer{,/projects,/others} \
+        -type d -maxdepth 1 -mindepth 1) \
+        | sort | uniq \
+        | fzf)
+    [[ -z $selected ]] && return 1
+    [[ $selected == $PWD ]] && return 0
+    cd "$selected"
 }
 
 #ex:filetype=sh
