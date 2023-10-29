@@ -7,7 +7,7 @@
     cl = clone --depth 1
     cm = commit -m 
     lg = log --oneline --graph
-    st = status -s
+    st = status -sb
     sw = switch
     lsf = ls-files
     lst = ls-tree -r --name-only
@@ -17,7 +17,7 @@
     amend = commit --amend
     recon = rebase --continue
 [user]
-    name = Diwas10
+    name = Diwas Rimal
     email = rimaldiwas10@gmail.com
 [color "status"]
     changed = blue

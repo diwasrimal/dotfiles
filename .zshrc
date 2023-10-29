@@ -8,8 +8,10 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{cyan}%n%f %F{magenta}%3~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%%%f '
+PROMPT='%F{green}%n%f %F{cyan}%3~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%#%f '
 #PS1="%F{magenta}%1~%f %f%(?.%f.%F{red})%#%f "
+
+setopt HIST_IGNORE_SPACE
 
 # Load custom aliases and functions
 . ~/.config/shell/aliases
