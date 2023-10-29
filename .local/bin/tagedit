@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Change your song's metadata
+set -e
+
+. $HOME/Developer/projects/songs/venv/bin/activate
+cd ${XDG_MUSIC_DIR:-$HOME/Music}
+
+while true; do
+  clear
+  file=$(ls | fzf)
+  [ -z "$file" ] && exit 1
+  echo "Filename: $file"
+  python -m music_tag --print "$file"
+
+  oldtitle=$(python -m music_tag --print --tags title "$file" | tr -d '\n' | sed 's/^title: //')
+  oldartist=$(python -m music_tag --print --tags artist "$file" | tr -d '\n' | sed 's/^artist: //')
+
+  printf "Title: " && read -e title
+  printf "Artist: " && read -e artist
+  [ -n "$title" ] && python -m music_tag --set "title:$title" "$file"
+  [ -n "$artist" ] && python -m music_tag --set "artist:$artist" "$file"
+
+  title="${title:-$oldtitle}"
+  artist="${artist:-$oldartist}"
+
+  newfile="$artist - $title.${file##*.}"
+  printf "Change filename to \"$newfile\" ? (Y/n/c) "
+  read choice
+  case $choice in
+      n|N) ;;
+      c) printf "Enter new filename: "
+          read newfile
+          mv "$file" "$newfile.${file##*.}"
+          ;;
+      y|Y|*) mv "$file" "$newfile" ;;
+  esac
+done
+
+cd - >/dev/null
+deactivate
