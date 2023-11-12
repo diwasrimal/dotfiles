@@ -16,9 +16,12 @@ open_session() {
     fi
 }
 
-[ -n "$1" ] && [ -d "$1" ] && open_session "$1" && exit
+if [ -n "$1" ]; then
+    [ "$1" = "." ] && dir=$PWD || dir=$1
+    [ -d "$dir" ] && open_session "$dir" && exit
+fi
 
-dir=$(find $HOME/Developer $HOME/Developer/projects \
+dir=$(find $HOME/Developer $HOME/Developer/projects $HOME/Developer/others \
     -type d -maxdepth 1 -mindepth 1 | fzf)
 
 open_session "$dir"
