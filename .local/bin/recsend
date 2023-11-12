@@ -1,0 +1,5 @@
+#!/bin/sh
+file=~/Desktop/$(ls -t ~/Desktop | grep -i "Screen Recording" | head -1)
+[ -z "$file" ] && exit
+ffmpeg -y -i "$file" ~/Desktop/out.mp4
+0xsend ~/Desktop/out.mp4
