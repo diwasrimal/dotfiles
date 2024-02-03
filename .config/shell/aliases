@@ -4,6 +4,7 @@
 alias ..="cd .."
 alias ...="cd ../.."
 alias tn='tmux new -A -s "${PWD##*/}"'     # Open new tmux session in curr dir
+alias tmk='tmux kill-server'
 alias dl="cd ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
 alias mus="cd ${XDG_MUSIC_DIR:-$HOME/Music}"
 alias pics="cd ${XDG_PICTURES_DIR:-$HOME/Pictures}"
@@ -14,16 +15,17 @@ alias dev="cd $HOME/Developer"
 alias newrec='ls -t ~/Desktop | grep "Screen Recording" | head -1 | xargs -I{} echo -n "$HOME/Desktop/{}"'
 alias newss='ls -t ~/Desktop | grep "Screenshot" | head -1 | xargs -I{} echo -n "$HOME/Desktop/{}"'
 alias newdl='ls -t ~/Downloads | head -1 | xargs -I{} echo -n $HOME/Downloads/{}'
+alias sendnewrec='ffmpeg -i "$(newrec)" ~/Desktop/out.mp4 && 0xsend ~/Desktop/out.mp4'
 
 # Edit config files quickly
 alias alconf='$EDITOR ~/.config/shell/aliases'
 alias tmconf='$EDITOR ~/.config/tmux/tmux.conf'
 
-# yt-dlp 
+# yt-dlp
 alias ytp="yt-dlp -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"  # Download video playlists
 alias ytm="yt-dlp -x --audio-quality 0 --audio-format mp3 --embed-thumbnail --embed-metadata -o '${XDG_MUSIC_DIR:-$HOME/Music}/%(title)s.%(ext)s'" # Download music
 alias yta="yt-dlp -x --audio-quality 0 --audio-format mp3 --embed-thumbnail --embed-metadata" # Download just audio
-
+alias ytmp4="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"
 
 alias ls='ls --color=auto'
 alias ll='ls --color=auto -lah'
@@ -48,6 +50,11 @@ alias lvser="find $HOME/Developer -type d \( -name node_modules -o -name venv \)
 
 # Aliases to manage dotfiles
 alias dots="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-alias dotsignore='cd; dots status -s | grep "??" | cut -c 4- >> .gitignore; ${EDITOR:-nvim} .gitignore; cd - >/dev/null 2>&1'
+alias dotsignore='cd; echo >> .gitignore; dots status -s | grep "??" | cut -c 4- >> .gitignore; ${EDITOR:-nvim} .gitignore; cd - >/dev/null 2>&1'
+
+# Remove .DS_Store files in macos
+alias rmds='find . -type f -name ".DS_Store" -exec rm -fv {} \;'
+
+alias notes='nvim ~/Developer/notes'
 
 # ex: filetype=sh

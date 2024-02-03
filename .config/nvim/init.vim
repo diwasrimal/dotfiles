@@ -15,4 +15,8 @@ map <leader>x <cmd>bdelete<cr>
 nnoremap <c-p> <cmd>FZF<cr>
 nnoremap <leader>e <cmd>Explore<cr>
 
+" Move text up and down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 autocmd FileType markdown,gitcommit setlocal spell

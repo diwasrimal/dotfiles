@@ -1,12 +1,13 @@
 #!/bin/sh
 
 # Clipboard collect
-# collects unique text stored on clipboard
-# I use this mostly to collect mutliple links at once
+# Collects unique text stored on clipboard
+# Useful mostly to collect mutliple links at once
 
 # shell command to paste from clipboard
 # `pbpaste` works on macOS
 # `xclip -o selection clipboard` might work on GNU/Linux
+
 paste_command="pbpaste"
 [ $(uname) = "Linux" ] && paste_command="xclip -o selection clipboard"
 
