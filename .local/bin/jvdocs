@@ -1,0 +1,4 @@
+#!/bin/sh
+
+set -xe
+open ~/Developer/tools/jdk-21.0.1-docs/index.html

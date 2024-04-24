@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Find function signatures in a C file
+
+if [[ -z "$1" || ! -f "$1" ]]; then
+    echo "Usage: ${0##*/} <filename.c>"
+    exit 1
+fi
+
+file="$1"
+[ ! -s "$file" ] && exit
+
+while IFS= read -r line; do
+    if [[ -z "$line"
+        || "$line" =~ ^[[:space:]] \
+        || $line == "#"* \
+        || $line == "{"* \
+        || $line == *"}"* \
+        || $line == "//"* \
+        || $line == *";"* \
+        || $line == *"="* \
+        || $line == *"for ("* ||  $line == *"for("* \
+        || $line == *"if ("* ||  $line == *"if("* \
+        || $line == *"while ("* ||  $line == *"while("* \
+        || $line == *"switch ("* ||  $line == *"switch("* \
+        || $line == *"main ("* ||  $line == *"main("* \
+        ]]; then
+        continue
+    fi
+
+    if [[ $line == *"("* && $line == *")"* ]]; then
+        echo $line
+    fi
+done < "$file"

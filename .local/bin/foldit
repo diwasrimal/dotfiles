@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Fold a file in place
+
+set -xe
+tmp=$(mktemp)
+fold -s "$1" > $tmp
+mv $tmp "$1"

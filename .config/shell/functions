@@ -12,4 +12,18 @@ g() {
     cd "$selected"
 }
 
+# View Go documentation easily
+gdoc() {
+	go doc $1 | less -i
+}
+
+# Get help for MySQL commands
+shelp() {
+	echo "help $@" | mysql -u helper | less -i
+}
+
+# Help for PostgreSQL
+ph() {
+	echo "\h $@" | psql | less -i
+}
 #ex:filetype=sh

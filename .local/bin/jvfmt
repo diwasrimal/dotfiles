@@ -1,0 +1,4 @@
+#!/bin/sh
+
+set -xe
+java -jar ~/Developer/tools/google-java-format-1.18.1-all-deps.jar --aosp -i $@

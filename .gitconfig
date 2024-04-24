@@ -5,7 +5,7 @@
     au = add -u
     ap = add -p
     cl = clone --depth 1
-    cm = commit -m 
+    cm = commit -m
     lg = log --oneline --graph
     st = status -sb
     sw = switch
@@ -16,6 +16,8 @@
     undo = reset --soft HEAD~1
     amend = commit --amend
     recon = rebase --continue
+    root = rev-parse --show-toplevel
+    fmt = !bash ./format.sh
 [user]
     name = Diwas Rimal
     email = rimaldiwas10@gmail.com

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Copy quick!
+# Copy important files quickly
+
+storage="$HOME/.local/share/quick-copy"
+[ -d "$storage" ] || mkdir -p "$storage"
+
+# If given filename as arg, copy that file to storage
+if [ -f "$1" ]; then
+   cp "$1" "$storage/"
+   exit
+fi
+
+file=$(find "$storage" -mindepth 1 -maxdepth 3 | fzf)
+[ -f "$file" ] && cp "$file" ./

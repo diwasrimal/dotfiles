@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# mans: Manpage Search 
+# mans: Manpage Search
 # Quickly opens a man page using fzf
 # Usage: mans [-c]
 
@@ -17,4 +17,5 @@ fi
 
 [ ! -s "$db" ] && echo "No database, use mans -c to create!" && exit
 
-cat "$db" | fzf | sed 's/, .*/ - /; s/\(.*\)(\(.*\)).* - .*/\2 \1/' | xargs man
+manual=$(fzf < "$db" | sed 's/, .*/ - /; s/\(.*\)(\(.*\)).* - .*/\2 \1/')
+man $manual

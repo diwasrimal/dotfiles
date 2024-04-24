@@ -1,4 +1,5 @@
 # Completion
+type brew &>/dev/null && FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 autoload -U compinit
 zstyle ':completion:*' menu select
 compinit
@@ -11,7 +12,13 @@ setopt PROMPT_SUBST
 PROMPT='%F{green}%n%f %F{cyan}%3~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%#%f '
 #PS1="%F{magenta}%1~%f %f%(?.%f.%F{red})%#%f "
 
+setopt interactivecomments
+
+# Better history control
+export HISTSIZE=30000
+export SAVEHIST=30000
 setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
 
 # Load custom aliases and functions
 . ~/.config/shell/aliases
