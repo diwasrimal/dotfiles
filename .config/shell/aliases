@@ -4,6 +4,7 @@
 alias ..="cd .."
 alias ...="cd ../.."
 alias tn='tmux new -A -s "${PWD##*/}"'     # Open new tmux session in curr dir
+alias ta='tmux a'
 alias tmk='tmux kill-server'
 alias dl="cd ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
 alias mus="cd ${XDG_MUSIC_DIR:-$HOME/Music}"
