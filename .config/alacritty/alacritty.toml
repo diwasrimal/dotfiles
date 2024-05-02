@@ -1,4 +1,4 @@
-import  = ["~/.config/alacritty/gruvbox_material_medium_dark.toml"]
+import  = ["~/.config/alacritty/gruvbox_material_medium_dark_theme.toml"]
 
 [window]
 opacity = 0.999
@@ -8,3 +8,23 @@ option_as_alt = "Both"
 [font]
 size = 13
 normal = { family = "FiraCode Nerd Font", style = "Regular" }
+
+# Most of these keybindings are to be used within tmux
+[keyboard]
+bindings = [
+	{ key = "H", mods = "Command", chars = "\u001b\u0068" }, # alt-h, prefix with \u00
+	{ key = "J", mods = "Command", chars = "\u001b\u006a" }, # alt-j
+	{ key = "K", mods = "Command", chars = "\u001b\u006b" }, # alt-k
+	{ key = "L", mods = "Command", chars = "\u001b\u006c" }, # alt-l
+	{ key = "O", mods = "Command", chars = "\u001b\u006f" }, # alt-o
+	{ key = "I", mods = "Command", chars = "\u001b\u0069" }, # alt-i
+	{ key = "9", mods = "Command", chars = "\u001b\u0039" }, # alt-9
+	{ key = "8", mods = "Command", chars = "\u001b\u0038" }, # alt-8
+	{ key = "7", mods = "Command", chars = "\u001b\u0037" }, # alt-7
+	{ key = "6", mods = "Command", chars = "\u001b\u0036" }, # alt-6
+	{ key = "5", mods = "Command", chars = "\u001b\u0035" }, # alt-5
+	{ key = "4", mods = "Command", chars = "\u001b\u0034" }, # alt-4
+	{ key = "3", mods = "Command", chars = "\u001b\u0033" }, # alt-3
+	{ key = "2", mods = "Command", chars = "\u001b\u0032" }, # alt-2
+	{ key = "1", mods = "Command", chars = "\u001b\u0031" }, # alt-1
+]
