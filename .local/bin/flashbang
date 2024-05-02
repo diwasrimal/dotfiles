@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Toggle light mode in alacritty terminal
+
+set -xe
+
+file=$HOME/.config/alacritty/alacritty.toml
+
+if grep -q 'light_theme' $file; then
+	sed -i '' 's/light_theme/dark_theme/g' $file
+else
+	sed -i '' 's/dark_theme/light_theme/g' $file
+fi
+

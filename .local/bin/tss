@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Tmux Session Switcher
+
+[ -z "$TMUX" ] && exit 1
+
+session=$(tmux list-sessions | cut -d ':' -f 1 | fzf)
+[ -z "$session" ] && exit 1
+tmux switch-client -t "$session"
