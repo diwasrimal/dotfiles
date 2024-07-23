@@ -17,5 +17,5 @@ fi
 
 [ ! -s "$db" ] && echo "No database, use mans -c to create!" && exit
 
-manual=$(fzf < "$db" | sed 's/, .*/ - /; s/\(.*\)(\(.*\)).* - .*/\2 \1/')
+manual=$(fzf --delimiter='- ' --nth=1 < "$db" | sed 's/, .*/ - /; s/\(.*\)(\(.*\)).* - .*/\2 \1/')
 man $manual

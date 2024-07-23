@@ -1,5 +1,5 @@
 export CLICOLOR=1
-export EDITOR="nvim"
+export EDITOR="vim"
 
 # Use colors for less, man, etc.
 export LESS_TERMCAP_mb=$'\e[36m'     # begin bold
@@ -27,7 +27,7 @@ export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 # Java and Android
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
 
 # Zig
 export PATH="$PATH:$HOME/Developer/tools/zig-macos-aarch64-0.11.0"

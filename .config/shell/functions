@@ -10,10 +10,11 @@ g() {
     [[ -z $selected ]] && return 1
     [[ $selected == $PWD ]] && return 0
     cd "$selected"
+	PWD="$selected"
 }
 
 # View Go documentation easily
-gdoc() {
+gd() {
 	go doc $1 | less -i
 }
 

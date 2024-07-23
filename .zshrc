@@ -9,7 +9,7 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{green}%n%f %F{cyan}%3~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%#%f '
+PROMPT='%F{green}%n %D{%L:%M:%S}%f %F{cyan}%3~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%#%f '
 
 # Right prompt to show vi mode
 function zle-line-init zle-keymap-select {

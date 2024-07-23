@@ -2,19 +2,23 @@
 
 # Send files or directory to a server using rsync or scp
 
-usage="Usage: ${0##*/} [file|dir]"
+usage="Usage: ${0##*/} {file|dir} [user@ip:~/path/to/dst]"
 [ ! -f "$1" -a ! -d "$1" ] && echo "$usage" && exit 1
 
-printf "Recipient [user@ip]: "
-read recipient
-[ -z "$recipient" ] && exit 1
-
-printf "Path [~/Desktop]: "
-read path
-[ -z "$path" ] && exit 1
+if [ -z "$2" ]; then
+	printf "Recipient [user@ip]: "
+	read recipient
+	[ -z "$recipient" ] && exit 1
+	printf "Path [~/Desktop]: "
+	read path
+	[ -z "$path" ] && exit 1
+	dst="$recipient:$path"
+else
+	dst="$2"
+fi
 
 if command -v rsync >/dev/null 2>&1; then
-    rsync --human-readable --progress -r "$1" "$recipient:$path"
+    rsync --human-readable --progress -r "$1" "$dst"
 else
-    scp -r "$1" "$recipient:$path"
+    scp -r "$1" "$dst"
 fi

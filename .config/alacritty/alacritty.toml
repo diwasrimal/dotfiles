@@ -12,7 +12,7 @@ normal = { family = "FiraCode Nerd Font", style = "Regular" }
 # Most of these keybindings are to be used within tmux
 [keyboard]
 bindings = [
-	{ key = "H", mods = "Command", chars = "\u001b\u0068" }, # alt-h, prefix with \u00
+	{ key = "H", mods = "Command", chars = "\u001b\u0068" }, # alt-h, 1b68, prefix with \u00
 	{ key = "J", mods = "Command", chars = "\u001b\u006a" }, # alt-j
 	{ key = "K", mods = "Command", chars = "\u001b\u006b" }, # alt-k
 	{ key = "L", mods = "Command", chars = "\u001b\u006c" }, # alt-l
