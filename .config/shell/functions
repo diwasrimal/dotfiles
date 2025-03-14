@@ -10,12 +10,11 @@ g() {
     [[ -z $selected ]] && return 1
     [[ $selected == $PWD ]] && return 0
     cd "$selected"
-	PWD="$selected"
 }
 
 # View Go documentation easily
 gd() {
-	go doc $1 | less -i
+	go doc $@ | less -i
 }
 
 # Get help for MySQL commands
@@ -27,4 +26,11 @@ shelp() {
 ph() {
 	echo "\h $@" | psql | less -i
 }
+
+timesh() {
+  shell=${1-$SHELL}
+  for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
+
 #ex:filetype=sh

@@ -60,7 +60,7 @@ case $1 in
     # Delete invalid paths in file
     -d) tmpfile=$(mktemp)
         while read -r path; do
-            [ -d "$path" ] && echo "$path" >> $tmpfile
+            [ -d "$path" ] && echo "$path" >> $tmpfile || echo "Removing $path"
         done < "$bmfile"
         cp $tmpfile "$bmfile"
         rm $tmpfile

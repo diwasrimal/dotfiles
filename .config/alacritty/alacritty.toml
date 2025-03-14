@@ -1,5 +1,3 @@
-import  = ["~/.config/alacritty/gruvbox_material_medium_dark_theme.toml"]
-
 [window]
 opacity = 0.999
 padding = { x = 5, y = 3 }
@@ -7,24 +5,86 @@ option_as_alt = "Both"
 
 [font]
 size = 13
-normal = { family = "FiraCode Nerd Font", style = "Regular" }
+#normal = { family = "JetBrainsMono Nerd Font Mono"}
+#offset.x = 1
+#offset.y = -2
 
-# Most of these keybindings are to be used within tmux
+[general]
+# import  = ["~/.config/alacritty/monokai_pro.toml"]
+ # import  = ["~/.config/alacritty/one_dark.toml"]
+ import  = ["~/.config/alacritty/gruvbox_material_medium_dark_theme.toml"]
+
+[scrolling]
+multiplier = 2
+
 [keyboard]
 bindings = [
-	{ key = "H", mods = "Command", chars = "\u001b\u0068" }, # alt-h, 1b68, prefix with \u00
-	{ key = "J", mods = "Command", chars = "\u001b\u006a" }, # alt-j
-	{ key = "K", mods = "Command", chars = "\u001b\u006b" }, # alt-k
-	{ key = "L", mods = "Command", chars = "\u001b\u006c" }, # alt-l
-	{ key = "O", mods = "Command", chars = "\u001b\u006f" }, # alt-o
-	{ key = "I", mods = "Command", chars = "\u001b\u0069" }, # alt-i
-	{ key = "9", mods = "Command", chars = "\u001b\u0039" }, # alt-9
-	{ key = "8", mods = "Command", chars = "\u001b\u0038" }, # alt-8
-	{ key = "7", mods = "Command", chars = "\u001b\u0037" }, # alt-7
-	{ key = "6", mods = "Command", chars = "\u001b\u0036" }, # alt-6
-	{ key = "5", mods = "Command", chars = "\u001b\u0035" }, # alt-5
-	{ key = "4", mods = "Command", chars = "\u001b\u0034" }, # alt-4
-	{ key = "3", mods = "Command", chars = "\u001b\u0033" }, # alt-3
-	{ key = "2", mods = "Command", chars = "\u001b\u0032" }, # alt-2
-	{ key = "1", mods = "Command", chars = "\u001b\u0031" }, # alt-1
+	{key = "Space", mods = "Option", chars="\u0002"}, # ctrl-b
 ]
+
+
+[[hints.enabled]]
+command = "open" # On macOS
+# command = "xdg-open" # On Linux/BSD
+# command = { program = "cmd", args = [ "/c", "start", "" ] } # On Windows
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "O", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+
+
+[[hints.enabled]]
+command = "/usr/local/bin/zed"
+post_processing = true
+mouse.enabled = true
+regex = '[-\w\d/\.]+?\.go:[0-9]*:[0-9]*: '
+
+# # These bindings go well with vanilla tmux
+# [keyboard]
+# bindings = [
+# 	{key = "1", mods = "Command", chars="\u0002\u0030"}, # ctrl-b 0
+# 	{key = "2", mods = "Command", chars="\u0002\u0031"}, # ctrl-b 1
+# 	{key = "3", mods = "Command", chars="\u0002\u0032"}, # ctrl-b 2
+# 	{key = "4", mods = "Command", chars="\u0002\u0033"}, # ctrl-b 3
+# 	{key = "5", mods = "Command", chars="\u0002\u0034"}, # ctrl-b 4
+# 	{key = "6", mods = "Command", chars="\u0002\u0035"}, # ctrl-b 5
+# 	{key = "7", mods = "Command", chars="\u0002\u0036"}, # ctrl-b 6
+# 	{key = "8", mods = "Command", chars="\u0002\u0037"}, # ctrl-b 7
+# 	{key = "9", mods = "Command", chars="\u0002\u0038"}, # ctrl-b 8
+# 	{key = "d", mods = "Command", chars="\u0002\u0025"}, 		# ctrl-b %
+# 	{key = "d", mods = "Command|Shift", chars="\u0002\u0022"}, 	# ctrl-b "
+# 	# {key = "w", mods = "Command", chars="\u0002\u0078"}, 		# ctrl-b x
+# 	# {key = "w", mods = "Command", chars="\u0004"}, 				# ctrl-d
+# 	{ key = "h", mods = "Command", chars = "\u0002\u001b\u005b\u0044" }, # ctrl-b left
+# 	{ key = "j", mods = "Command", chars = "\u0002\u001b\u005b\u0042" }, # ctrl-b down
+# 	{ key = "k", mods = "Command", chars = "\u0002\u001b\u005b\u0041" }, # ctrl-b up
+# 	{ key = "l", mods = "Command", chars = "\u0002\u001b\u005b\u0043" }, # ctrl-b right
+# 	{ key = "t", mods = "Command", chars = "\u0002\u0063"} # ctrl-b c
+# ]
+
+# [terminal.shell]
+# program = "/Users/lufy/.local/bin/tminit"
+
+
+# # Most of these keybindings are to be used within tmux
+# [keyboard]
+# bindings = [
+# 	{ key = "H", mods = "Command", chars = "\u001b\u0068" }, # alt-h, 1b68, prefix with \u00
+# 	{ key = "J", mods = "Command", chars = "\u001b\u006a" }, # alt-j
+# 	{ key = "K", mods = "Command", chars = "\u001b\u006b" }, # alt-k
+# 	{ key = "L", mods = "Command", chars = "\u001b\u006c" }, # alt-l
+# 	{ key = "O", mods = "Command", chars = "\u001b\u006f" }, # alt-o
+# 	{ key = "I", mods = "Command", chars = "\u001b\u0069" }, # alt-i
+# 	{ key = "9", mods = "Command", chars = "\u001b\u0039" }, # alt-9
+# 	{ key = "8", mods = "Command", chars = "\u001b\u0038" }, # alt-8
+# 	{ key = "7", mods = "Command", chars = "\u001b\u0037" }, # alt-7
+# 	{ key = "6", mods = "Command", chars = "\u001b\u0036" }, # alt-6
+# 	{ key = "5", mods = "Command", chars = "\u001b\u0035" }, # alt-5
+# 	{ key = "4", mods = "Command", chars = "\u001b\u0034" }, # alt-4
+# 	{ key = "3", mods = "Command", chars = "\u001b\u0033" }, # alt-3
+# 	{ key = "2", mods = "Command", chars = "\u001b\u0032" }, # alt-2
+# 	{ key = "1", mods = "Command", chars = "\u001b\u0031" }, # alt-1
+# ]
+

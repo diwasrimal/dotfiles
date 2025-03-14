@@ -22,7 +22,8 @@ export GOPATH="$HOME/Developer/tools/go"
 export PATH="$PATH:$HOME/.cargo/bin:$GOPATH/bin"
 
 # Node
-export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+# export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 
 # Java and Android
 export JAVA_HOME="$(/usr/libexec/java_home)"
@@ -30,7 +31,7 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
 
 # Zig
-export PATH="$PATH:$HOME/Developer/tools/zig-macos-aarch64-0.11.0"
+# export PATH="$PATH:$HOME/Developer/tools/zig-macos-aarch64-0.11.0"
 
 # Postgresql
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"

@@ -1,0 +1,15 @@
+font-family = "BlexMono Nerd Font"
+#font-feature = -calt
+font-thicken = true
+font-size = 12
+
+theme = OneHalfDark
+split-divider-color = 444
+
+window-padding-x = 5
+macos-option-as-alt = true
+
+keybind = super+f=write_screen_file:open
+
+# Disables cursor from becoming bar
+shell-integration-features = no-cursor

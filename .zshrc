@@ -9,18 +9,19 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{green}%n %D{%L:%M:%S}%f %F{cyan}%3~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%#%f '
+# PROMPT='%F{green}@%n %D{%L:%M:%S}%f %F{cyan}%3~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%#%f '
+PROMPT='%F{green}@%n%f %F{cyan}%3~%f %F{yellow}${vcs_info_msg_0_}%f%(?.%f.%F{red})%#%f '
 
 # Right prompt to show vi mode
-function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/n}/(main|viins)/i}"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-RPS1="i"
-setopt transientrprompt
-zle -N zle-line-init
-zle -N zle-keymap-select
+# function zle-line-init zle-keymap-select {
+#     RPS1="${${KEYMAP/vicmd/n}/(main|viins)/i}"
+#     RPS2=$RPS1
+#     zle reset-prompt
+# }
+# RPS1="i"
+# setopt transientrprompt
+# zle -N zle-line-init
+# zle -N zle-keymap-select
 
 # Use '#' as comments
 setopt interactivecomments
@@ -32,8 +33,8 @@ setopt HIST_IGNORE_SPACE
 setopt SHARE_HISTORY
 
 # Load custom aliases and functions
-. ~/.config/shell/aliases
-. ~/.config/shell/functions
+source ~/.config/shell/aliases
+source ~/.config/shell/functions
 
 # Settings for vi mode
 bindkey -v
@@ -54,3 +55,10 @@ bindkey '^?' backward-delete-char
 bindkey '^[^?' backward-kill-word
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# https://varun.ch/posts/slow-nvm/
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_LAZY_LOAD=true
+source "$HOME/.zsh-nvm.zsh"

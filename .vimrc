@@ -7,6 +7,8 @@ nmap <leader>w <C-w>
 nmap <leader>y "+y
 nmap <C-p> :FZF<CR>
 
+set mouse=a
+
 set rtp+=/opt/homebrew/opt/fzf
 autocmd FileType gitcommit,markdown setlocal spell
 

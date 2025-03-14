@@ -3,6 +3,7 @@
 # Navigation
 alias ..="cd .."
 alias ...="cd ../.."
+alias 3..="cd ../../.."
 alias tn='tmux new -A -s "${PWD##*/}"'     # Open new tmux session in curr dir
 alias ta='tmux a'
 alias tmk='tmux kill-server'
@@ -11,6 +12,8 @@ alias mus="cd ${XDG_MUSIC_DIR:-$HOME/Music}"
 alias pics="cd ${XDG_PICTURES_DIR:-$HOME/Pictures}"
 alias docs="cd ${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
 alias dev="cd $HOME/Developer"
+
+# Capture output of prev command with less
 
 # Quickly access recent file names
 alias newrec='ls -t ~/Desktop | grep "Screen Recording" | head -1 | xargs -I{} echo -n "$HOME/Desktop/{}"'
@@ -27,10 +30,11 @@ alias ytp="yt-dlp -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"  # D
 alias ytm="yt-dlp -x --audio-quality 0 --audio-format mp3 --embed-thumbnail --embed-metadata -o '${XDG_MUSIC_DIR:-$HOME/Music}/%(title)s.%(ext)s'" # Download music
 alias yta="yt-dlp -x --audio-quality 0 --audio-format mp3 --embed-thumbnail --embed-metadata" # Download just audio
 alias ytmp4="yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"
-alias ytv='cd ${XDG_VIDEOS_DIR:-$HOME/Movies} && yt-dlp'
+alias ytv="yt-dlp -o '${XDG_VIDEOS_DIR:-$HOME/Movies}/%(title)s.%(ext)s'"
 
 alias ls='ls --color=auto'
 alias ll='ls --color=auto -lah'
+alias l='less -i'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias ip='ip -color=auto'
