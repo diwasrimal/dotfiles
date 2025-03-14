@@ -1,0 +1,4 @@
+#!/bin/sh
+
+docindex="$(go env GOPATH)/docs-index"
+godoc -v -index -index_files "$docindex" $@

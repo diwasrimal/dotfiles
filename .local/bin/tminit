@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ -z "$TMUX" ]; then
+	/opt/homebrew/bin/tmux new -A -s "${PWD##*/}"
+else
+	/opt/homebrew/bin/tmux attach
+fi

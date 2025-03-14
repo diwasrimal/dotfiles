@@ -1,0 +1,55 @@
+#!/bin/sh
+
+# Fuzzily lookup go stdlib doc with fzf
+# Usage: fzgd [-u]
+# 	-u: update the documentation cache and exit
+
+gen_cache() {
+	out=$1
+	pkgs=$(go list std)
+	echo "$pkgs" > "$db/_pkgs.txt"
+	for pkg in $pkgs; do
+		mkdir -p $out/$pkg
+		go doc $pkg > "$out/$pkg/_doc.txt"
+		grep -E '^(var|func|type|const) ' "$out/$pkg/_doc.txt" > "$out/$pkg/_signatures.txt"
+		symbols=$(awk '{ print $2 }' "$out/$pkg/_signatures.txt" | sed 's/[(\[].*$//')
+		for sym in $symbols; do
+			go doc "$pkg.$sym" > "$out/$pkg/$sym.txt"
+		done
+		echo "written $out/$pkg"
+	done
+}
+
+db=${GOPATH:-$HOME/.cache}/go-std-doc-cache
+
+# Update the cache and exit if -u is given
+if [ "$1" = "-u" ]; then
+	echo "Updating cache at $db..." 
+	gen_cache "$db"
+	exit
+fi
+
+# Generate cache if it doesnot exist
+if [ ! -d "$db" ]; then
+	echo "Generating stdlib cache at $db..."
+	gen_cache "$db"
+fi
+
+cat="cat"
+if which bat >/dev/null; then
+	cat="bat --language go --plain --color always"
+fi
+save_browsing_pkg="echo {} > $db/browsing_pkg.txt"
+get_browsing_pkg="cat $db/browsing_pkg.txt"
+sym_extractor="$(dirname $0)/fzgd-extract-sym-from-line"
+
+cat "$db/_pkgs.txt" \
+	| fzf --preview "$cat $db/{}/_doc.txt" \
+		  --preview-window "right:70%" \
+		  --bind "change:first" \
+		  --bind "ctrl-j:preview-half-page-down,ctrl-k:preview-half-page-up" \
+		  --bind "tab:reload($save_browsing_pkg && cat $db/{}/_signatures.txt)+change-preview($cat $db/\$($get_browsing_pkg)/\$($sym_extractor {}).txt)+change-query()+change-preview-window(bottom:60%)" \
+		  --bind "shift-tab:reload(cat $db/_pkgs.txt)+change-query()+change-preview($cat $db/{}/_doc.txt)+change-preview-window(right:70%)"
+
+	
+

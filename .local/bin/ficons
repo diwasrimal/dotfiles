@@ -1,0 +1,5 @@
+#!/bin/sh
+
+dir=$HOME/Developer/tools/feathericons
+icon=$(ls "$dir" | fzf)
+[ -n "$icon" ] && cp -v "$dir/$icon" ./

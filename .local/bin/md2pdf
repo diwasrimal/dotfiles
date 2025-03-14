@@ -1,0 +1,4 @@
+#!/bin/sh
+
+set -xe
+open ~/Developer/tools/md2pdf-build/index.html
