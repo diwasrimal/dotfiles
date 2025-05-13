@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cache=$(go env GOMODCACHE)
-mod_path=$(find "$cache" -type d -mindepth 2 -maxdepth 4 | sed "s|^${cache}/||" | fzf)
+mod_path=$(find "$cache" -type d -mindepth 2 -maxdepth 4 | sed "s|^${cache}/||" | perl -pe 's/!(.)/uc($1)/ge' | fzf)
 mod=${mod_path#$cache/}
 
 set -x
